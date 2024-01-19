@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import authRoute from "./routes/authRoute.js";
 
 const app = express();
 
@@ -14,9 +16,9 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.log(error));
 
-app.get("/", (req, res) => {
-  res.send("Default Route");
-});
+app.use(cookieParser());
+
+app.use("/", authRoute);
 
 const port = 4000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
