@@ -51,6 +51,27 @@ const Home = () => {
         <div className="header">
           <p className="username">{username}</p>
         </div>
+
+        <div className="goalContainer">
+          <div className="proteinGoalContainer">
+            <div className="containerTitle">Protein Goal</div>
+            <button>edit</button>
+            <div className="proteinGoalAmount">
+              999 <span>g</span>
+            </div>
+          </div>
+
+          <div className="proteinConsumedContainer">
+            <div className="containerTitle">Protein Consumed</div>
+          </div>
+        </div>
+
+        <div className="entryContainer">
+          <div className="addEntryContainer">
+            <div className="containerTitle">Add Entry</div>
+          </div>
+        </div>
+
         <button onClick={logout}>LOGOUT</button>
       </div>
       <ToastContainer />
