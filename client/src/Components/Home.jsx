@@ -48,9 +48,9 @@ const Home = () => {
   return (
     <>
       <div className="home_page">
-        <h4>
-          Welcome <span>{username}</span>
-        </h4>
+        <div className="header">
+          <p className="username">{username}</p>
+        </div>
         <button onClick={logout}>LOGOUT</button>
       </div>
       <ToastContainer />
