@@ -24,7 +24,7 @@ const Home = () => {
         const { data } = await axios.post(
           "http://localhost:4000",
           {},
-          { withCredentials: true }
+          { withCredentials: true },
         );
 
         if (data.status) {
@@ -67,6 +67,14 @@ const Home = () => {
   const toggleDropdown = () => setShowDropdown(!showDropdown);
 
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("darkBody");
+    } else {
+      document.body.classList.remove("darkBody");
+    }
+  }, [isDarkMode]);
 
   return (
     <>
