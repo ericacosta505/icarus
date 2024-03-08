@@ -6,6 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 
+import Header from "./Header";
+
 const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies(["token"]);
@@ -79,20 +81,14 @@ const Home = () => {
   return (
     <>
       <div className={`home_page ${isDarkMode ? "dark-mode" : ""}`}>
-        <div className="header">
-          <div className="menu" onClick={toggleDropdown}>
-            ☰
-          </div>
-          {showDropdown && (
-            <div className="dropdown">
-              <button onClick={toggleDarkMode}>
-                {isDarkMode ? "LightMode" : "DarkMode"}
-              </button>
-              <button onClick={logout}>LOGOUT</button>
-            </div>
-          )}
-          <p className="username">{username}</p>
-        </div>
+        <Header
+          toggleDropdown={toggleDropdown}
+          showDropdown={showDropdown}
+          toggleDarkMode={toggleDarkMode}
+          isDarkMode={isDarkMode}
+          logout={logout}
+          username={username}
+        />
 
         <div className="goalContainer">
           <div
