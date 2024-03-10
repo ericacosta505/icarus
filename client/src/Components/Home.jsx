@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 
 import Header from "./Header";
+import ProteinGoal from "./ProteinGoal";
+import ProteinConsumed from "./ProteinConsumed";
+import AddEntryForm from "./AddEntryForm";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -80,54 +82,22 @@ const Home = () => {
 
   return (
     <>
-      <div className={`home_page ${isDarkMode ? "dark-mode" : ""}`}>
-        <Header
-          toggleDropdown={toggleDropdown}
-          showDropdown={showDropdown}
-          toggleDarkMode={toggleDarkMode}
-          isDarkMode={isDarkMode}
-          logout={logout}
-          username={username}
-        />
+      <Header
+        toggleDropdown={toggleDropdown}
+        showDropdown={showDropdown}
+        toggleDarkMode={toggleDarkMode}
+        isDarkMode={isDarkMode}
+        logout={logout}
+        username={username}
+      />
 
-        <div className="goalContainer">
-          <div
-            className={`${
-              isDarkMode ? "darkContainer" : "proteinGoalContainer"
-            }`}
-          >
-            <div className="proteinGoalContainerHeader">
-              <div className="containerTitle">Protein Goal</div>
-              <button>edit</button>
-            </div>
-            <div className="proteinGoalAmount">
-              999 <span>g</span>
-            </div>
-          </div>
+      <div className="goalContainer">
+        <ProteinGoal isDarkMode={isDarkMode} />
+        <ProteinConsumed isDarkMode={isDarkMode} pieChartData={pieChartData} />
+      </div>
 
-          <div
-            className={`${
-              isDarkMode ? "darkContainer" : "proteinConsumedContainer"
-            }`}
-          >
-            <Pie data={pieChartData} />
-          </div>
-        </div>
-
-        <div className="entryContainer">
-          <div
-            className={`${
-              isDarkMode ? "darkContainerLong" : "addEntryContainer"
-            }`}
-          >
-            <div className="containerTitle">Add Entry</div>
-            <div className="entryRow">
-              <input placeholder="Meal Name"></input>
-              <input placeholder="Protein Amount"></input>
-              <button>Add</button>
-            </div>
-          </div>
-        </div>
+      <div className="entryContainer">
+        <AddEntryForm isDarkMode={isDarkMode} />
       </div>
       <ToastContainer />
     </>
