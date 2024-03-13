@@ -16,6 +16,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  proteinGoal: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: new Date(),

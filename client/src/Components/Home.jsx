@@ -16,6 +16,7 @@ const Home = () => {
   const [username, setUsername] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [proteinGoal, setProteinGoal] = useState(999);
 
   useEffect(() => {
     const verifyCookie = async () => {
@@ -92,7 +93,7 @@ const Home = () => {
       />
 
       <div className="goalContainer">
-        <ProteinGoal isDarkMode={isDarkMode} />
+        <ProteinGoal isDarkMode={isDarkMode} proteinGoalValue={proteinGoal} />
         <ProteinConsumed isDarkMode={isDarkMode} pieChartData={pieChartData} />
       </div>
 
