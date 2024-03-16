@@ -30,4 +30,23 @@ const updateProteinGoal = async (req, res) => {
   }
 };
 
-export default updateProteinGoal;
+const getProteinGoal = async (req, res) => {
+  const { email } = req.params;
+
+  console.log("Getting protein goal for email", email);
+
+  try {
+    const user = await User.findOne({ email: decodeURIComponent(email) });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+    res.json({ proteinGoal: user.proteinGoal });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error getting protein goal", error: error });
+  }
+};
+
+export default { updateProteinGoal, getProteinGoal };

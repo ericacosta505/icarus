@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const ProteinGoal = ({ isDarkMode, proteinGoalValue }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [proteinGoal, setProteinGoal] = useState(proteinGoalValue);
+
+  useEffect(() => {
+    setProteinGoal(proteinGoalValue);
+  }, [proteinGoalValue]); // Update state when prop changes
 
   const handleEditClick = () => {
     setIsEditing(true);

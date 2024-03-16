@@ -16,7 +16,7 @@ const Home = () => {
   const [username, setUsername] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [proteinGoal, setProteinGoal] = useState(999);
+  const [proteinGoal, setProteinGoal] = useState(0);
 
   useEffect(() => {
     const verifyCookie = async () => {
@@ -49,6 +49,27 @@ const Home = () => {
     verifyCookie();
   }, [cookies.token, navigate, removeCookie]);
 
+  const userEmail = "acosta.eric505@icloud.com";
+  useEffect(() => {
+    if (userEmail) {
+      const fetchProteinGoal = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:4000/user/getProteinGoal/${userEmail}`,
+          );
+          if (response.data.proteinGoal) {
+            console.log(response.data);
+            setProteinGoal(response.data.proteinGoal);
+          }
+        } catch (error) {
+          console.error("Error fetching protein goal:", error);
+        }
+      };
+
+      fetchProteinGoal();
+    }
+  }, [userEmail]);
+
   const logout = () => {
     removeCookie("token");
     navigate("/login");
@@ -61,7 +82,7 @@ const Home = () => {
     datasets: [
       {
         label: "Protein Consumption",
-        data: [300, 700],
+        data: [300, proteinGoal - 300],
         backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
         borderWidth: 1,
