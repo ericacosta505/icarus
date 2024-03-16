@@ -18,10 +18,11 @@ const userSchema = new mongoose.Schema({
   },
   proteinGoal: {
     type: String,
+    default: "0",
   },
   createdAt: {
     type: Date,
-    default: new Date(),
+    default: Date.now,
   },
 });
 

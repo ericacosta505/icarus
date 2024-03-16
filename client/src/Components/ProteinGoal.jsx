@@ -15,7 +15,7 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue }) => {
   const handleUpdateClick = () => {
     const userEmail = "acosta.eric505@icloud.com"; // Replace with actual email retrieval logic
 
-    fetch(`http://localhost:3000/user/updateProteinGoal/${userEmail}`, {
+    fetch(`http://localhost:4000/user/updateProteinGoal/${userEmail}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
