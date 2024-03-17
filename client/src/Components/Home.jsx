@@ -17,6 +17,7 @@ const Home = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [proteinGoal, setProteinGoal] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const verifyCookie = async () => {
@@ -52,6 +53,7 @@ const Home = () => {
   const userEmail = "acosta.eric505@icloud.com";
   useEffect(() => {
     if (userEmail) {
+      setIsLoading(true);
       const fetchProteinGoal = async () => {
         try {
           const response = await axios.get(
@@ -61,8 +63,10 @@ const Home = () => {
             console.log(response.data);
             setProteinGoal(response.data.proteinGoal);
           }
+          setIsLoading(false);
         } catch (error) {
           console.error("Error fetching protein goal:", error);
+          setIsLoading(false);
         }
       };
 
@@ -114,7 +118,11 @@ const Home = () => {
       />
 
       <div className="goalContainer">
-        <ProteinGoal isDarkMode={isDarkMode} proteinGoalValue={proteinGoal} />
+        <ProteinGoal
+          isDarkMode={isDarkMode}
+          proteinGoalValue={proteinGoal}
+          isLoading={isLoading}
+        />
         <ProteinConsumed isDarkMode={isDarkMode} pieChartData={pieChartData} />
       </div>
 

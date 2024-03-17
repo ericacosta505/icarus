@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ProteinGoal = ({ isDarkMode, proteinGoalValue }) => {
+const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [proteinGoal, setProteinGoal] = useState(proteinGoalValue);
 
@@ -47,10 +47,14 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue }) => {
     <div className={`${isDarkMode ? "darkContainer" : "proteinGoalContainer"}`}>
       <div className="proteinGoalContainerHeader">
         <div className="containerTitle">Protein Goal</div>
-        {!isEditing && <button onClick={handleEditClick}>edit</button>}
+        {!isEditing && !isLoading && (
+          <button onClick={handleEditClick}>edit</button>
+        )}
       </div>
       <div className="proteinGoalAmount">
-        {isEditing ? (
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : isEditing ? (
           <>
             <input
               type="number"
