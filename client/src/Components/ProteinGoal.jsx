@@ -53,7 +53,7 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading }) => {
       </div>
       <div className="proteinGoalAmount">
         {isLoading ? (
-          <div>Loading...</div>
+          <div>...</div>
         ) : isEditing ? (
           <>
             <input
