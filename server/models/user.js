@@ -16,9 +16,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  proteinGoal: {
+    type: String,
+    default: "0",
+  },
   createdAt: {
     type: Date,
-    default: new Date(),
+    default: Date.now,
   },
 });
 
