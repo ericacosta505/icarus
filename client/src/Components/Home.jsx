@@ -123,7 +123,11 @@ const Home = () => {
           proteinGoalValue={proteinGoal}
           isLoading={isLoading}
         />
-        <ProteinConsumed isDarkMode={isDarkMode} pieChartData={pieChartData} />
+        <ProteinConsumed
+          isDarkMode={isDarkMode}
+          pieChartData={pieChartData}
+          proteinGoalValue={proteinGoal}
+        />
       </div>
 
       <div className="entryContainer">
