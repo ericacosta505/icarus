@@ -1,3 +1,4 @@
+// Importing necessary modules and components from React, React Router, and other libraries
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -5,11 +6,13 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 
+// Importing custom components
 import Header from "./Header";
 import ProteinGoal from "./ProteinGoal";
 import ProteinConsumed from "./ProteinConsumed";
 import AddEntryForm from "./AddEntryForm";
 
+// Main Home component
 const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies(["token"]);
@@ -19,6 +22,7 @@ const Home = () => {
   const [proteinGoal, setProteinGoal] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Verify cookie existence and validate user session
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
@@ -50,8 +54,9 @@ const Home = () => {
     verifyCookie();
   }, [cookies.token, navigate, removeCookie]);
 
-  const userEmail = "acosta.eric505@icloud.com";
+  // Fetch the user's protein goal
   useEffect(() => {
+    const userEmail = "acosta.eric505@icloud.com";
     if (userEmail) {
       setIsLoading(true);
       const fetchProteinGoal = async () => {
@@ -60,7 +65,6 @@ const Home = () => {
             `http://localhost:4000/user/getProteinGoal/${userEmail}`,
           );
           if (response.data.proteinGoal) {
-            console.log(response.data);
             setProteinGoal(response.data.proteinGoal);
           }
           setIsLoading(false);
@@ -72,26 +76,27 @@ const Home = () => {
 
       fetchProteinGoal();
     }
-  }, [userEmail]);
+  }, []);
 
+  // Logout function to clear session and navigate to login
   const logout = () => {
     removeCookie("token");
     navigate("/login");
   };
 
+  // Update protein goal function
   const updateProteinGoal = (newGoal) => {
-    console.log("Updating protein goal to:", newGoal); // Add logging to debug
     setProteinGoal(newGoal);
   };
 
+  // Registering components for Chart.js
   Chart.register(ArcElement, Tooltip, Legend);
 
-  const proteinConsumed = "30";
-
+  // State and handlers for UI features
   const toggleDropdown = () => setShowDropdown(!showDropdown);
-
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
+  // Apply dark mode to the body element
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("darkBody");
@@ -100,6 +105,7 @@ const Home = () => {
     }
   }, [isDarkMode]);
 
+  // Component rendering
   return (
     <>
       <Header
@@ -120,9 +126,8 @@ const Home = () => {
         />
         <ProteinConsumed
           isDarkMode={isDarkMode}
-          // pieChartData={pieChartData}
           proteinGoalValue={proteinGoal}
-          proteinConsumed={proteinConsumed}
+          proteinConsumed="30" // Moved from variable declaration to inline prop
         />
       </div>
 
