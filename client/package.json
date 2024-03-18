@@ -12,6 +12,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-cookie": "^7.0.1",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^6.21.3",
     "react-scripts": "5.0.1",
     "react-toastify": "^10.0.4",

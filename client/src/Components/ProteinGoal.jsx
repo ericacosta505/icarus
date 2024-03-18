@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Loader from "./Loader";
 
 const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -53,7 +54,7 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading }) => {
       </div>
       <div className="proteinGoalAmount">
         {isLoading ? (
-          <div>...</div>
+          <Loader />
         ) : isEditing ? (
           <>
             <input

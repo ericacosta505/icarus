@@ -10,14 +10,14 @@ const updateProteinGoal = async (req, res) => {
       .json({ message: "You must provide a protein goal." });
   }
 
-  console.log("Updating protein goal for email:", email);
+  // console.log("Updating protein goal for email:", email);
   try {
     const user = await User.findOneAndUpdate(
       { email: decodeURIComponent(email) },
       { proteinGoal: proteinGoal },
       { new: true },
     );
-    console.log("Updated user:", user);
+    // console.log("Updated user:", user);
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
@@ -33,7 +33,7 @@ const updateProteinGoal = async (req, res) => {
 const getProteinGoal = async (req, res) => {
   const { email } = req.params;
 
-  console.log("Getting protein goal for email", email);
+  // console.log("Getting protein goal for email", email);
 
   try {
     const user = await User.findOne({ email: decodeURIComponent(email) });
