@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
 
-const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading }) => {
+const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [proteinGoal, setProteinGoal] = useState(proteinGoalValue);
 
@@ -36,6 +36,10 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading }) => {
       .then((data) => {
         console.log("Success:", data);
         setIsEditing(false);
+        // Make sure data.proteinGoal is the updated value you expect
+        console.log(data.user.proteinGoal);
+        console.log(typeof data.user.proteinGoal);
+        onUpdate(data.user.proteinGoal);
       })
       .catch((error) => {
         console.error("Error:", error);

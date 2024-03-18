@@ -79,20 +79,14 @@ const Home = () => {
     navigate("/login");
   };
 
+  const updateProteinGoal = (newGoal) => {
+    console.log("Updating protein goal to:", newGoal); // Add logging to debug
+    setProteinGoal(newGoal);
+  };
+
   Chart.register(ArcElement, Tooltip, Legend);
 
-  const pieChartData = {
-    labels: ["Protein Consumed", "Remaining Goal"],
-    datasets: [
-      {
-        label: "Protein Consumption",
-        data: [300, proteinGoal - 300],
-        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
-        borderWidth: 1,
-      },
-    ],
-  };
+  const proteinConsumed = "30";
 
   const toggleDropdown = () => setShowDropdown(!showDropdown);
 
@@ -122,11 +116,13 @@ const Home = () => {
           isDarkMode={isDarkMode}
           proteinGoalValue={proteinGoal}
           isLoading={isLoading}
+          onUpdate={updateProteinGoal}
         />
         <ProteinConsumed
           isDarkMode={isDarkMode}
-          pieChartData={pieChartData}
+          // pieChartData={pieChartData}
           proteinGoalValue={proteinGoal}
+          proteinConsumed={proteinConsumed}
         />
       </div>
 
