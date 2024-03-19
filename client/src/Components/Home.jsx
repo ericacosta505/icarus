@@ -11,6 +11,7 @@ import Header from "./Header";
 import ProteinGoal from "./ProteinGoal";
 import ProteinConsumed from "./ProteinConsumed";
 import AddEntryForm from "./AddEntryForm";
+import DateDisplay from "./DateDisplay";
 
 // Main Home component
 const Home = () => {
@@ -129,6 +130,7 @@ const Home = () => {
           proteinGoalValue={proteinGoal}
           proteinConsumed="30" // Moved from variable declaration to inline prop
         />
+        <DateDisplay isDarkMode={isDarkMode} />
       </div>
 
       <div className="entryContainer">

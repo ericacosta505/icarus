@@ -11,6 +11,7 @@ html {
 .form_container,
 .proteinGoalContainer,
 .proteinConsumedContainer,
+.dateDisplayContainer,
 .addEntryContainer {
     background: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -107,8 +108,8 @@ a:hover {
     align-items: center;
     justify-content: center;
     gap: 10rem;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .proteinGoalContainer {
@@ -137,6 +138,12 @@ a:hover {
 }
 
 .proteinConsumedContainer {
+    height: 20rem;
+    width: 20rem;
+    padding: 1rem;
+}
+
+.dateDisplayContainer {
     height: 20rem;
     width: 20rem;
     padding: 1rem;
@@ -224,4 +231,13 @@ a:hover {
         "Helvetica Neue", Arial, sans-serif;
     background: #333;
     color: #fff;
+}
+
+.displayDate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    font-weight: bold;
+    flex-direction: column;
 }
