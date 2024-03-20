@@ -12,6 +12,7 @@ html {
 .proteinGoalContainer,
 .proteinConsumedContainer,
 .dateDisplayContainer,
+.entryListContainer,
 .addEntryContainer {
     background: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -149,11 +150,18 @@ a:hover {
     padding: 1rem;
 }
 
+.entryListContainer {
+    height: 20rem;
+    width: 20rem;
+    padding: 1rem;
+}
+
 .entryContainer {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10rem;
 }
 
 .addEntryContainer {

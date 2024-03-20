@@ -12,6 +12,7 @@ import ProteinGoal from "./ProteinGoal";
 import ProteinConsumed from "./ProteinConsumed";
 import AddEntryForm from "./AddEntryForm";
 import DateDisplay from "./DateDisplay";
+import EntryList from "./EntryList";
 
 // Main Home component
 const Home = () => {
@@ -135,6 +136,7 @@ const Home = () => {
 
       <div className="entryContainer">
         <AddEntryForm isDarkMode={isDarkMode} />
+        <EntryList isDarkMode={isDarkMode} />
       </div>
       <ToastContainer />
     </>
