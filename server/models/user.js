@@ -1,6 +1,21 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
+const entrySchema = new mongoose.Schema({
+  mealName: {
+    type: String,
+    required: true,
+  },
+  proteinAmount: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -20,6 +35,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "0",
   },
+  entries: [entrySchema],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -27,7 +43,9 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function () {
-  this.password = await bcrypt.hash(this.password, 12);
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 12);
+  }
 });
 
 export default mongoose.model("User", userSchema);
