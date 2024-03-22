@@ -4,7 +4,43 @@ const AddEntryForm = ({ isDarkMode }) => {
   const [mealName, setMealName] = useState("");
   const [proteinAmount, setProteinAmount] = useState("");
 
-  const handleAddEntry = () => {};
+  const handleAddEntry = async () => {
+    if (!mealName || !proteinAmount) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    let userEmail = "acosta.eric505@icloud.com";
+
+    try {
+      const response = await fetch(
+        `http://localhost:4000/user/addEntry/${userEmail}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            mealName,
+            proteinAmount: Number(proteinAmount),
+          }),
+        },
+      );
+
+      if (response.ok) {
+        // Handle the successful entry addition here
+        console.log("Entry added successfully");
+        setMealName("");
+        setProteinAmount("");
+      } else {
+        // Handle errors here
+        console.error("Failed to add entry");
+      }
+    } catch (error) {
+      // Handle network errors here
+      console.error("There was an error adding the entry", error);
+    }
+  };
 
   return (
     <div

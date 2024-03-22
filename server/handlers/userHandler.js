@@ -49,4 +49,35 @@ const getProteinGoal = async (req, res) => {
   }
 };
 
-export default { updateProteinGoal, getProteinGoal };
+const addEntry = async (req, res) => {
+  const { email } = req.params;
+
+  const { mealName, proteinAmount } = req.body;
+
+  if (!email || !mealName || !proteinAmount) {
+    return res.status(400).json({ message: "Missing information" });
+  }
+
+  try {
+    const user = await User.findOne({ email: decodeURIComponent(email) });
+
+    const newEntry = { mealName, proteinAmount, createdAt: Date.now };
+
+    console.log("About to push", newEntry);
+
+    user.entries.push(newEntry);
+
+    console.log("Finished pushing");
+
+    await user.save();
+
+    res.status(201).json(newEntry);
+  } catch (error) {
+    console.error(error); // For debugging only
+    res
+      .status(500)
+      .json({ message: "Error adding entry", error: error.message });
+  }
+};
+
+export default { updateProteinGoal, getProteinGoal, addEntry };

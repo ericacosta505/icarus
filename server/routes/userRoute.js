@@ -1,11 +1,12 @@
 import express from "express";
 import UserHandlers from "../handlers/userHandler.js";
 
-const { updateProteinGoal, getProteinGoal } = UserHandlers;
+const { updateProteinGoal, getProteinGoal, addEntry } = UserHandlers;
 
 const router = express.Router();
 
 router.post("/updateProteinGoal/:email", updateProteinGoal);
 router.get("/getProteinGoal/:email", getProteinGoal);
+router.post("/addEntry/:email", addEntry);
 
 export default router;
