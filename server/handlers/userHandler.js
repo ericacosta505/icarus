@@ -61,7 +61,7 @@ const addEntry = async (req, res) => {
   try {
     const user = await User.findOne({ email: decodeURIComponent(email) });
 
-    const newEntry = { mealName, proteinAmount, createdAt: Date.now };
+    const newEntry = { mealName, proteinAmount, createdAt: Date.now() };
 
     console.log("About to push", newEntry);
 
