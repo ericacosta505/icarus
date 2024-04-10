@@ -80,4 +80,26 @@ const addEntry = async (req, res) => {
   }
 };
 
-export default { updateProteinGoal, getProteinGoal, addEntry };
+const getTodaysEntries = async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    const user = await User.findOne({ email: decodeURIComponent(email) });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+    res.json({ todaysEntries: user.entries });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error getting todays entries", error: error });
+  }
+};
+
+export default {
+  updateProteinGoal,
+  getProteinGoal,
+  addEntry,
+  getTodaysEntries,
+};
