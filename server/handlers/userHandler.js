@@ -89,7 +89,20 @@ const getTodaysEntries = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
-    res.json({ todaysEntries: user.entries });
+    // Get today's date at 00:00:00 and 23:59:59 to cover the full day
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+
+    const todayEnd = new Date();
+    todayEnd.setHours(23, 59, 59, 999);
+
+    // Filter entries to include only those added today
+    const todaysEntries = user.entries.filter((entry) => {
+      const entryDate = new Date(entry.createdAt);
+      return entryDate >= todayStart && entryDate <= todayEnd;
+    });
+
+    res.json({ todaysEntries });
   } catch (error) {
     res
       .status(500)
