@@ -23,6 +23,7 @@ const Home = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [proteinGoal, setProteinGoal] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [todaysEntries, setTodaysEntries] = useState([]);
 
   // Verify cookie existence and validate user session
   useEffect(() => {
@@ -77,6 +78,28 @@ const Home = () => {
       };
 
       fetchProteinGoal();
+    }
+  }, []);
+
+  // Fetch todays entries
+  useEffect(() => {
+    const userEmail = "acosta.eric505@icloud.com";
+    if (userEmail) {
+      const fetchTodaysEntries = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:4000/user/getTodaysEntries/${userEmail}`,
+          );
+          if (response.data.todaysEntries) {
+            setTodaysEntries(response.data.todaysEntries);
+          }
+        } catch (error) {
+          console.error("Error fetching protein goal:", error);
+          setIsLoading(false);
+        }
+      };
+
+      fetchTodaysEntries();
     }
   }, []);
 
@@ -136,7 +159,7 @@ const Home = () => {
 
       <div className="entryContainer">
         <AddEntryForm isDarkMode={isDarkMode} />
-        <EntryList isDarkMode={isDarkMode} />
+        <EntryList isDarkMode={isDarkMode} todaysEntries={todaysEntries} />
       </div>
       <ToastContainer />
     </>
