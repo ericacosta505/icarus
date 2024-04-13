@@ -184,6 +184,7 @@ a:hover {
     background: #ffffff;
     border: solid rgb(255, 255, 255) thin;
     box-shadow: 0 4px 6px rgba(119, 119, 119, 0.1);
+    padding-left: 0.5rem;
 }
 
 .menu {
