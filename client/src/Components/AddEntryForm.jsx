@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddEntryForm = ({ isDarkMode }) => {
+const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
   const [mealName, setMealName] = useState("");
   const [proteinAmount, setProteinAmount] = useState("");
 
@@ -32,6 +32,7 @@ const AddEntryForm = ({ isDarkMode }) => {
         console.log("Entry added successfully");
         setMealName("");
         setProteinAmount("");
+        onEntryAdded()
       } else {
         // Handle errors here
         console.error("Failed to add entry");

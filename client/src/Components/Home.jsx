@@ -81,27 +81,23 @@ const Home = () => {
     }
   }, []);
 
-  // Fetch todays entries
-  useEffect(() => {
-    const userEmail = "acosta.eric505@icloud.com";
-    if (userEmail) {
-      const fetchTodaysEntries = async () => {
-        try {
-          const response = await axios.get(
-            `http://localhost:4000/user/getTodaysEntries/${userEmail}`,
-          );
-          if (response.data.todaysEntries) {
-            setTodaysEntries(response.data.todaysEntries);
-          }
-        } catch (error) {
-          console.error("Error fetching protein goal:", error);
-          setIsLoading(false);
-        }
-      };
-
-      fetchTodaysEntries();
+ // Ensuring fetchTodaysEntries can be easily called
+const fetchTodaysEntries = async () => {
+  const userEmail = "acosta.eric505@icloud.com";
+  try {
+    const response = await axios.get(`http://localhost:4000/user/getTodaysEntries/${userEmail}`);
+    if (response.data.todaysEntries) {
+      setTodaysEntries(response.data.todaysEntries);
     }
-  }, []);
+  } catch (error) {
+    console.error("Error fetching todays entries:", error);
+  }
+};
+
+// Use this function in useEffect to initially load entries
+useEffect(() => {
+  fetchTodaysEntries();
+}, []);
 
   // Logout function to clear session and navigate to login
   const logout = () => {
@@ -158,7 +154,7 @@ const Home = () => {
       </div>
 
       <div className="entryContainer">
-        <AddEntryForm isDarkMode={isDarkMode} />
+        <AddEntryForm isDarkMode={isDarkMode} onEntryAdded={fetchTodaysEntries} />
         <EntryList isDarkMode={isDarkMode} todaysEntries={todaysEntries} />
       </div>
       <ToastContainer />
