@@ -24,6 +24,7 @@ const Home = () => {
   const [proteinGoal, setProteinGoal] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [todaysEntries, setTodaysEntries] = useState([]);
+  const [isEntryLoading, setisEntryLoading] = useState(true)
 
   // Verify cookie existence and validate user session
   useEffect(() => {
@@ -85,12 +86,15 @@ const Home = () => {
 const fetchTodaysEntries = async () => {
   const userEmail = "acosta.eric505@icloud.com";
   try {
+    setisEntryLoading(true)
     const response = await axios.get(`http://localhost:4000/user/getTodaysEntries/${userEmail}`);
     if (response.data.todaysEntries) {
       setTodaysEntries(response.data.todaysEntries);
+      setisEntryLoading(false)
     }
   } catch (error) {
     console.error("Error fetching todays entries:", error);
+    setisEntryLoading(false)
   }
 };
 
@@ -155,7 +159,7 @@ useEffect(() => {
 
       <div className="entryContainer">
         <AddEntryForm isDarkMode={isDarkMode} onEntryAdded={fetchTodaysEntries} />
-        <EntryList isDarkMode={isDarkMode} todaysEntries={todaysEntries} />
+        <EntryList isDarkMode={isDarkMode} todaysEntries={todaysEntries} isEntryLoading={isEntryLoading} />
       </div>
       <ToastContainer />
     </>

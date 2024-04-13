@@ -1,8 +1,11 @@
-const EntryList = ({ isDarkMode, todaysEntries }) => {
+import Loader from "./Loader";
+
+const EntryList = ({ isDarkMode, todaysEntries, isEntryLoading }) => {
   return (
     <div className={`${isDarkMode ? "darkContainer" : "entryListContainer"}`}>
       Today's Entries
-      {todaysEntries.length === 0 ? (
+
+      {isEntryLoading ?(<Loader /> ): (todaysEntries.length === 0 ? (
         <div>No Entries Found</div>
       ) : (
         <ul>
@@ -12,7 +15,10 @@ const EntryList = ({ isDarkMode, todaysEntries }) => {
             </li>
           ))}
         </ul>
-      )}
+      ))}
+
+
+      
     </div>
   );
 };
