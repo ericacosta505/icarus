@@ -78,6 +78,10 @@ button:hover {
     background-color: #0056b3; /* Darker on hover */
 }
 
+.pentcilButton{
+    background-color: #ffffff;
+}
+
 a {
     color: gold;
     text-decoration: none;
