@@ -15,7 +15,7 @@ const updateProteinGoal = async (req, res) => {
     const user = await User.findOneAndUpdate(
       { email: decodeURIComponent(email) },
       { proteinGoal: proteinGoal },
-      { new: true },
+      { new: true }
     );
     // console.log("Updated user:", user);
     if (!user) {
@@ -110,9 +110,50 @@ const getTodaysEntries = async (req, res) => {
   }
 };
 
+const sumTodaysEntries = async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    const user = await User.findOne({ email: decodeURIComponent(email) });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+    // Get today's date at 00:00:00 and 23:59:59 to cover the full day
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+
+    const todayEnd = new Date();
+    todayEnd.setHours(23, 59, 59, 999);
+
+    // Filter entries to include only those added today
+    const todaysEntries = user.entries.filter((entry) => {
+      const entryDate = new Date(entry.createdAt);
+      return entryDate >= todayStart && entryDate <= todayEnd;
+    });
+
+    // Calculate the sum of proteinAmount for today's entries
+    const totalProteinToday = todaysEntries.reduce((sum, entry) => {
+      return sum + (Number(entry.proteinAmount) || 0);
+    }, 0);
+
+    // Send the total protein amount as response
+    return res.json({
+      message: "Total protein consumed today:",
+      totalProteinToday: totalProteinToday,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error calculating sum of todays entries",
+      error: error,
+    });
+  }
+};
+
 export default {
   updateProteinGoal,
   getProteinGoal,
   addEntry,
   getTodaysEntries,
+  sumTodaysEntries,
 };
