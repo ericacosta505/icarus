@@ -24,7 +24,8 @@ const Home = () => {
   const [proteinGoal, setProteinGoal] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [todaysEntries, setTodaysEntries] = useState([]);
-  const [isEntryLoading, setisEntryLoading] = useState(true)
+  const [isEntryLoading, setisEntryLoading] = useState(true);
+  const [proteinConsumed, setProteinConsumed] = useState(0);
 
   // Verify cookie existence and validate user session
   useEffect(() => {
@@ -38,7 +39,7 @@ const Home = () => {
         const { data } = await axios.post(
           "http://localhost:4000",
           {},
-          { withCredentials: true },
+          { withCredentials: true }
         );
 
         if (data.status) {
@@ -66,7 +67,7 @@ const Home = () => {
       const fetchProteinGoal = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:4000/user/getProteinGoal/${userEmail}`,
+            `http://localhost:4000/user/getProteinGoal/${userEmail}`
           );
           if (response.data.proteinGoal) {
             setProteinGoal(response.data.proteinGoal);
@@ -82,26 +83,46 @@ const Home = () => {
     }
   }, []);
 
- // Ensuring fetchTodaysEntries can be easily called
-const fetchTodaysEntries = async () => {
-  const userEmail = "acosta.eric505@icloud.com";
-  try {
-    setisEntryLoading(true)
-    const response = await axios.get(`http://localhost:4000/user/getTodaysEntries/${userEmail}`);
-    if (response.data.todaysEntries) {
-      setTodaysEntries(response.data.todaysEntries);
-      setisEntryLoading(false)
+  // Ensuring fetchTodaysEntries can be easily called
+  const fetchTodaysEntries = async () => {
+    const userEmail = "acosta.eric505@icloud.com";
+    try {
+      setisEntryLoading(true);
+      const response = await axios.get(
+        `http://localhost:4000/user/getTodaysEntries/${userEmail}`
+      );
+      if (response.data.todaysEntries) {
+        setTodaysEntries(response.data.todaysEntries);
+        setisEntryLoading(false);
+      }
+    } catch (error) {
+      console.error("Error fetching todays entries:", error);
+      setisEntryLoading(false);
     }
-  } catch (error) {
-    console.error("Error fetching todays entries:", error);
-    setisEntryLoading(false)
-  }
-};
+  };
 
-// Use this function in useEffect to initially load entries
-useEffect(() => {
-  fetchTodaysEntries();
-}, []);
+  const fetchSumTodaysEntries = async () => {
+    const userEmail = "acosta.eric505@icloud.com";
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/user/sumTodaysEntries/${userEmail}`
+      );
+      if (response.data.totalProteinToday) {
+        setProteinConsumed(response.data.totalProteinToday);
+      }
+    } catch (error) {
+      console.error("Error fetching sum of todays entries:", error);
+    }
+  };
+
+  // Use this function in useEffect to initially load entries
+  useEffect(() => {
+    fetchTodaysEntries();
+  }, []);
+
+  useEffect(() => {
+    fetchSumTodaysEntries();
+  }, []);
 
   // Logout function to clear session and navigate to login
   const logout = () => {
@@ -152,14 +173,21 @@ useEffect(() => {
         <ProteinConsumed
           isDarkMode={isDarkMode}
           proteinGoalValue={proteinGoal}
-          proteinConsumed="30" // Moved from variable declaration to inline prop
+          proteinConsumed={proteinConsumed}
         />
         <DateDisplay isDarkMode={isDarkMode} />
       </div>
 
       <div className="entryContainer">
-        <AddEntryForm isDarkMode={isDarkMode} onEntryAdded={fetchTodaysEntries} />
-        <EntryList isDarkMode={isDarkMode} todaysEntries={todaysEntries} isEntryLoading={isEntryLoading} />
+        <AddEntryForm
+          isDarkMode={isDarkMode}
+          onEntryAdded={fetchTodaysEntries}
+        />
+        <EntryList
+          isDarkMode={isDarkMode}
+          todaysEntries={todaysEntries}
+          isEntryLoading={isEntryLoading}
+        />
       </div>
       <ToastContainer />
     </>
