@@ -181,7 +181,10 @@ const Home = () => {
       <div className="entryContainer">
         <AddEntryForm
           isDarkMode={isDarkMode}
-          onEntryAdded={fetchTodaysEntries}
+          onEntryAdded={() => {
+            fetchTodaysEntries();
+            fetchSumTodaysEntries();
+          }}
         />
         <EntryList
           isDarkMode={isDarkMode}
