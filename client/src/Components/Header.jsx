@@ -12,7 +12,7 @@ const Header = ({
         ☰
       </div>
       {showDropdown && (
-        <div className="dropdown">
+        <div className="sidebar">
           <button onClick={toggleDarkMode}>
             {isDarkMode ? "LightMode" : "DarkMode"}
           </button>

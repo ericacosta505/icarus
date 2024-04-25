@@ -1,11 +1,11 @@
 body,
 html {
-    height: 100%;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, sans-serif;
-    background: #f5f5f7;
-    color: #1d1d1f;
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
 }
 
 .form_container,
@@ -14,243 +14,270 @@ html {
 .dateDisplayContainer,
 .entryListContainer,
 .addEntryContainer {
-    background: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
 }
 
 .form_container {
-    backdrop-filter: blur(0.5rem);
-    padding: 4rem;
-    width: 30rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  backdrop-filter: blur(0.5rem);
+  padding: 4rem;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 form div {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 label {
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
 
 input[type="email"],
 input[type="text"],
 input[type="password"] {
-    width: 100%;
-    padding: 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    margin-top: 0.5rem;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 input[type="email"]:focus,
 input[type="password"]:focus {
-    outline: none;
-    border-color: gold;
-    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.5);
+  outline: none;
+  border-color: gold;
+  box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.5);
 }
 
 button {
-    background-color: #0071e3; /* Example CTA color */
-    color: #ffffff;
-    padding: 0.8rem 1.2rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background-color: #0071e3; /* Example CTA color */
+  color: #ffffff;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker on hover */
+  background-color: #0056b3; /* Darker on hover */
 }
 
-.pentcilButton{
-    background-color: #ffffff;
+.pentcilButton {
+  background-color: #ffffff;
 }
 
 a {
-    color: gold;
-    text-decoration: none;
+  color: gold;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .ToastContainer {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 /* Home Page */
 .header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .username {
-    padding-right: 1rem;
+  padding-right: 1rem;
 }
 
 .goalContainer {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10rem;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .proteinGoalContainer {
-    height: 20rem;
-    width: 20rem;
-    padding: 1rem;
+  height: 20rem;
+  width: 20rem;
+  padding: 1rem;
 }
 
 .proteinGoalContainerHeader {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .proteinGoalAmount {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
-    height: 80%;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  height: 80%;
+  font-weight: bold;
 }
 
 .proteinGoalAmount span {
-    font-size: 5rem;
-    font-weight: bold;
+  font-size: 5rem;
+  font-weight: bold;
 }
 
 .proteinConsumedContainer {
-    height: 20rem;
-    width: 20rem;
-    padding: 1rem;
+  height: 20rem;
+  width: 20rem;
+  padding: 1rem;
 }
 
 .dateDisplayContainer {
-    height: 20rem;
-    width: 20rem;
-    padding: 1rem;
+  height: 20rem;
+  width: 20rem;
+  padding: 1rem;
 }
 
 .entryListContainer {
-    height: 20rem;
-    width: 20rem;
-    padding: 1rem;
+  height: 20rem;
+  width: 20rem;
+  padding: 1rem;
 }
 
 .entryContainer {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem;
 }
 
 .addEntryContainer {
-    height: 20rem;
-    width: 52rem;
-    padding: 1rem;
+  height: 20rem;
+  width: 52rem;
+  padding: 1rem;
 }
 
 .entryRow {
-    display: flex;
-    gap: 3rem;
-    justify-content: center;
-    align-items: center;
-    padding-top: 7rem;
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  padding-top: 7rem;
 }
 
 .entryRow input {
-    font-size: 1.5rem;
-    border-radius: 0.5rem;
-    background: #ffffff;
-    border: solid rgb(255, 255, 255) thin;
-    box-shadow: 0 4px 6px rgba(119, 119, 119, 0.1);
-    padding-left: 0.5rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  border: solid rgb(255, 255, 255) thin;
+  box-shadow: 0 4px 6px rgba(119, 119, 119, 0.1);
+  padding-left: 0.5rem;
 }
 
 .menu {
-    cursor: pointer;
-    padding: 1rem;
-    font-size: 1.5rem;
-    position: absolute;
-    left: 0;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  z-index: 1001;
 }
 
 .dropdown {
-    position: absolute;
-    left: 0;
-    top: 3rem;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 0.5rem;
-    padding: 0.5rem;
+  position: absolute;
+  left: 0;
+  top: 3rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 }
 
 .dropdown button {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 .dark-mode {
-    background-color: #333;
-    color: #fff;
+  background-color: #333;
+  color: #fff;
 }
 
 .darkContainer {
-    background-color: #454545;
-    height: 20rem;
-    width: 20rem;
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow */
-    border-radius: 1rem;
+  background-color: #454545;
+  height: 20rem;
+  width: 20rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  border-radius: 1rem;
 }
 
 .darkContainerLong {
-    background-color: #454545;
-    height: 20rem;
-    width: 52rem;
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow */
-    border-radius: 1rem;
+  background-color: #454545;
+  height: 20rem;
+  width: 52rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  border-radius: 1rem;
 }
 
 .darkBody {
-    height: 100%;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, sans-serif;
-    background: #333;
-    color: #fff;
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background: #333;
+  color: #fff;
 }
 
 .displayDate {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
-    font-weight: bold;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  font-weight: bold;
+  flex-direction: column;
 }
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px; /* Adjust width to your liking */
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem; /* Adds space between buttons */
+}
+
+/* This will push the content to the right when the sidebar is visible */
+/* body.showSidebar {
+  padding-left: 250px;
+} */

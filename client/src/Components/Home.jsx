@@ -127,6 +127,7 @@ const Home = () => {
   // Logout function to clear session and navigate to login
   const logout = () => {
     removeCookie("token");
+    document.body.classList.remove("showSidebar"); // Hide sidebar on logout
     navigate("/login");
   };
 
@@ -139,7 +140,18 @@ const Home = () => {
   Chart.register(ArcElement, Tooltip, Legend);
 
   // State and handlers for UI features
-  const toggleDropdown = () => setShowDropdown(!showDropdown);
+  const toggleDropdown = () => {
+    const shouldShowDropdown = !showDropdown;
+    setShowDropdown(shouldShowDropdown);
+
+    // Toggling the 'showSidebar' class on the body
+    if (shouldShowDropdown) {
+      document.body.classList.add("showSidebar");
+    } else {
+      document.body.classList.remove("showSidebar");
+    }
+  };
+
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
   // Apply dark mode to the body element
@@ -150,6 +162,13 @@ const Home = () => {
       document.body.classList.remove("darkBody");
     }
   }, [isDarkMode]);
+
+  // Clean up sidebar class when component unmounts
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove("showSidebar");
+    };
+  }, []);
 
   // Component rendering
   return (
