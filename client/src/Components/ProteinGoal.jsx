@@ -14,7 +14,12 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
   };
 
   const handleProteinGoalChange = (e) => {
-    setProteinGoal(e.target.value);
+    if (e.target.value >= 0) {
+      setProteinGoal(e.target.value);
+    } else {
+      alert("Protein Goal must be greater than 0");
+      setIsEditing(false);
+    }
   };
 
   const handleUpdateClick = () => {
@@ -53,7 +58,9 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
       <div className="proteinGoalContainerHeader">
         <div className="containerTitle">Protein Goal</div>
         {!isEditing && !isLoading && (
-          <button className="pencilButton" onClick={handleEditClick}><i class="fa-solid fa-pencil"></i></button>
+          <button className="pencilButton" onClick={handleEditClick}>
+            <i class="fa-solid fa-pencil"></i>
+          </button>
         )}
       </div>
       <div className="proteinGoalAmount">

@@ -8,6 +8,9 @@ const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
     if (!mealName || !proteinAmount) {
       alert("Please fill in all fields.");
       return;
+    } else if (proteinAmount < 0) {
+      alert("Protein Amount must be greater than 0");
+      return;
     }
 
     let userEmail = "acosta.eric505@icloud.com";
@@ -24,7 +27,7 @@ const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
             mealName,
             proteinAmount: Number(proteinAmount),
           }),
-        },
+        }
       );
 
       if (response.ok) {
@@ -32,7 +35,7 @@ const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
         console.log("Entry added successfully");
         setMealName("");
         setProteinAmount("");
-        onEntryAdded()
+        onEntryAdded();
       } else {
         // Handle errors here
         console.error("Failed to add entry");
