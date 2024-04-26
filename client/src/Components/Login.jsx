@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,10 +11,6 @@ const Login = () => {
     setInputValue((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const displayToast = (message, type = "error") => {
-    toast[type](message, { position: "bottom-left" });
-  };
-
   const login = async (credentials) => {
     try {
       const { data } = await axios.post(
@@ -24,13 +19,12 @@ const Login = () => {
         { withCredentials: true }
       );
       if (data.success) {
-        displayToast(data.message, "success");
         setTimeout(() => navigate("/home"), 1000);
       } else {
-        displayToast(data.message || "Login failed");
+        alert('Login Failed')
       }
     } catch (error) {
-      displayToast(error.response?.data.message || error.message);
+      alert('Something went wrong')
     }
   };
 
@@ -69,7 +63,6 @@ const Login = () => {
           Don't have an account? <Link to="/signup">Signup</Link>
         </span>
       </form>
-      <ToastContainer />
     </div>
   );
 };

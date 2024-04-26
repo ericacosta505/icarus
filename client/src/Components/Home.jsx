@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 
 // Importing custom components
@@ -44,7 +43,6 @@ const Home = () => {
 
         if (data.status) {
           setUsername(data.user);
-          toast(`Hello ${data.user}`, { position: "top-right" });
         } else {
           removeCookie("token");
           navigate("/login");
@@ -211,7 +209,6 @@ const Home = () => {
           isEntryLoading={isEntryLoading}
         />
       </div>
-      <ToastContainer />
     </>
   );
 };
