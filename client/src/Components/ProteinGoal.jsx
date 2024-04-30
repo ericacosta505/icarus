@@ -18,6 +18,7 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
       setProteinGoal(e.target.value);
     } else {
       alert("Protein Goal must be greater than 0");
+      setProteinGoal(proteinGoalValue);
       setIsEditing(false);
     }
   };
