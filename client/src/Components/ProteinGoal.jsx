@@ -59,7 +59,7 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
         <div className="containerTitle">Protein Goal</div>
         {!isEditing && !isLoading && (
           <button className="pencilButton" onClick={handleEditClick}>
-            <i class="fa-solid fa-pencil"></i>
+            <i className="fa-solid fa-pencil"></i>
           </button>
         )}
       </div>
