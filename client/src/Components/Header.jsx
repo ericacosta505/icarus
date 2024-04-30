@@ -8,11 +8,17 @@ const Header = ({
 }) => {
   return (
     <div className="header">
-      <div className="menu" onClick={toggleDropdown}>
-        ☰
-      </div>
+      {isDarkMode ? (
+        <div className="darkModeMenu" onClick={toggleDropdown}>
+          ☰
+        </div>
+      ) : (
+        <div className="menu" onClick={toggleDropdown}>
+          ☰
+        </div>
+      )}
       {showDropdown && (
-        <div className="sidebar">
+        <div className={isDarkMode ? "darkModeSidebar" : "sidebar"}>
           <button onClick={toggleDarkMode}>
             {isDarkMode ? "LightMode" : "DarkMode"}
           </button>

@@ -273,6 +273,37 @@ a:hover {
   margin-bottom: 1rem; /* Adds space between buttons */
 }
 
+.darkModeSidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px; /* Adjust width to your liking */
+  background-color: #454545;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+}
+
+.darkModeSidebar button {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem; /* Adds space between buttons */
+}
+
+.darkModeMenu {
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  z-index: 1001;
+  color: white;
+}
+
 /* This will push the content to the right when the sidebar is visible */
 /* body.showSidebar {
   padding-left: 250px;
