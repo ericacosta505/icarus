@@ -308,3 +308,20 @@ a:hover {
 /* body.showSidebar {
   padding-left: 250px;
 } */
+
+.todayEntryItems {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.deleteEntry {
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* .deleteEntry {
+  color: white;
+  font-weight: bold;
+} */
