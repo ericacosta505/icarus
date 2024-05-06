@@ -150,10 +150,48 @@ const sumTodaysEntries = async (req, res) => {
   }
 };
 
+const deleteEntry = async (req, res) => {
+  const { email, entryId } = req.params;
+
+  if (!email || !entryId) {
+    return res.status(400).json({ message: "Missing information" });
+  }
+
+  try {
+    const user = await User.findOne({ email: decodeURIComponent(email) });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    // Find the index of the entry to delete
+    const indexToDelete = user.entries.findIndex(
+      (entry) => entry._id.toString() === entryId
+    );
+
+    if (indexToDelete === -1) {
+      return res.status(404).json({ message: "Entry not found." });
+    }
+
+    // Remove the entry from the user's entries array
+    user.entries.splice(indexToDelete, 1);
+
+    await user.save();
+
+    res.json({ message: "Entry deleted successfully." });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error deleting entry", error: error.message });
+  }
+};
+
 export default {
   updateProteinGoal,
   getProteinGoal,
   addEntry,
   getTodaysEntries,
   sumTodaysEntries,
+  deleteEntry,
 };

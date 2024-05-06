@@ -25,6 +25,7 @@ const Home = () => {
   const [todaysEntries, setTodaysEntries] = useState([]);
   const [isEntryLoading, setisEntryLoading] = useState(true);
   const [proteinConsumed, setProteinConsumed] = useState(0);
+  const [entryDeleted, setEntryDeleted] = useState(false);
 
   // Verify cookie existence and validate user session
   useEffect(() => {
@@ -105,22 +106,31 @@ const Home = () => {
       const response = await axios.get(
         `http://localhost:4000/user/sumTodaysEntries/${userEmail}`
       );
-      if (response.data.totalProteinToday) {
+      if (response.data.totalProteinToday !== undefined) {
         setProteinConsumed(response.data.totalProteinToday);
+      } else {
+        // Explicitly set to 0 if no entries or undefined is returned
+        setProteinConsumed(0);
       }
     } catch (error) {
       console.error("Error fetching sum of todays entries:", error);
+      setProteinConsumed(0); // Ensure reset to 0 on error too
     }
   };
-
   // Use this function in useEffect to initially load entries
   useEffect(() => {
     fetchTodaysEntries();
-  }, []);
+  }, [entryDeleted]);
 
   useEffect(() => {
     fetchSumTodaysEntries();
-  }, []);
+  }, [entryDeleted]);
+
+  // Function to handle entry deletion
+  const handleEntryDelete = () => {
+    setEntryDeleted(!entryDeleted); // Toggle the state to trigger re-render
+    fetchSumTodaysEntries();
+  };
 
   // Logout function to clear session and navigate to login
   const logout = () => {
@@ -191,6 +201,7 @@ const Home = () => {
           isDarkMode={isDarkMode}
           proteinGoalValue={proteinGoal}
           proteinConsumed={proteinConsumed}
+          entryDeleted={entryDeleted}
         />
         <DateDisplay isDarkMode={isDarkMode} />
       </div>
@@ -207,6 +218,8 @@ const Home = () => {
           isDarkMode={isDarkMode}
           todaysEntries={todaysEntries}
           isEntryLoading={isEntryLoading}
+          onEntryDelete={fetchTodaysEntries}
+          handleEntryDelete={handleEntryDelete}
         />
       </div>
     </>

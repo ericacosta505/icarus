@@ -312,15 +312,22 @@ a:hover {
 .todayEntryItems {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  position: relative; /* Required for absolute positioning of child */
 }
 
 .deleteEntry {
   color: red;
   font-weight: bold;
   cursor: pointer;
+  visibility: hidden; /* Initially hidden */
+  position: absolute;
+  right: 0;
 }
 
+.todayEntryItems:hover .deleteEntry {
+  visibility: visible; /* Show deleteEntry on hover */
+}
 /* .deleteEntry {
   color: white;
   font-weight: bold;
