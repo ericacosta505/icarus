@@ -18,7 +18,6 @@ const EntryList = ({
       // Assuming you have a method to refresh the entries after deletion, you can call it here
       onEntryDelete();
       handleEntryDelete();
-      console.log(response.data.message);
     } catch (error) {
       console.error("Error deleting entry:", error);
     }

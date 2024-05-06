@@ -40,11 +40,8 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
         return response.json();
       })
       .then((data) => {
-        console.log("Success:", data);
         setIsEditing(false);
         // Make sure data.proteinGoal is the updated value you expect
-        console.log(data.user.proteinGoal);
-        console.log(typeof data.user.proteinGoal);
         onUpdate(data.user.proteinGoal);
       })
       .catch((error) => {
