@@ -261,7 +261,7 @@ a:hover {
   background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  padding: 1rem;
+  /* padding: 1rem; */
   display: flex;
   flex-direction: column;
   padding-top: 3rem;
@@ -270,8 +270,20 @@ a:hover {
 .sidebar button {
   display: block;
   width: 100%;
-  margin-bottom: 1rem; /* Adds space between buttons */
+  /* margin-bottom: 1rem; Adds space between buttons */
+  background-color: #ffffff;
+  color: black;
+  border-top: 1px solid rgb(223, 223, 223);
+  border-bottom: 1px solid rgb(223, 223, 223);
+  border-radius: 0;
+  border-left: none; /* No border on the left */
+  border-right: none; /* No border on the right */
 }
+
+.sidebar button:hover{
+  background-color: rgb(223, 223, 223);;
+}
+
 
 .darkModeSidebar {
   position: fixed;
@@ -282,7 +294,7 @@ a:hover {
   background-color: #454545;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  padding: 1rem;
+  /* padding: 1rem; */
   display: flex;
   flex-direction: column;
   padding-top: 3rem;
@@ -291,8 +303,21 @@ a:hover {
 .darkModeSidebar button {
   display: block;
   width: 100%;
-  margin-bottom: 1rem; /* Adds space between buttons */
+  /* margin-bottom: 1rem; Adds space between buttons */
+  background-color: #454545;
+  color: black;
+  border-top: 1px solid rgb(94, 94, 94);
+  border-bottom: 1px solid rgb(94, 94, 94);
+  border-radius: 0;
+  border-left: none; /* No border on the left */
+  border-right: none; /* No border on the right */
+  color: white;
 }
+
+.darkModeSidebar button:hover{
+  background-color: rgb(94, 94, 94)
+}
+
 
 .darkModeMenu {
   cursor: pointer;
