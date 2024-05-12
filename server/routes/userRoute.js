@@ -1,5 +1,6 @@
 import express from "express";
 import UserHandlers from "../handlers/userHandler.js";
+import userVerification from "../middlewares/authMiddleware.js";
 
 const {
   updateProteinGoal,
@@ -12,11 +13,13 @@ const {
 
 const router = express.Router();
 
-router.post("/updateProteinGoal/:email", updateProteinGoal);
-router.get("/getProteinGoal/:email", getProteinGoal);
-router.post("/addEntry/:email", addEntry);
-router.get("/getTodaysEntries/:email", getTodaysEntries);
-router.get("/sumTodaysEntries/:email", sumTodaysEntries);
-router.delete("/deleteEntry/:email/:entryId", deleteEntry);
+router.use(userVerification)
+
+router.post("/updateProteinGoal", updateProteinGoal);
+router.get("/getProteinGoal", getProteinGoal);
+router.post("/addEntry", addEntry);
+router.get("/getTodaysEntries", getTodaysEntries);
+router.get("/sumTodaysEntries", sumTodaysEntries);
+router.delete("/deleteEntry/:entryId", deleteEntry);
 
 export default router;

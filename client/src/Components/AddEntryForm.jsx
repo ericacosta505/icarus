@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useCookies } from 'react-cookie'; // Import useCookies
 
 const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
+  const [cookies] = useCookies(['token']);
   const [mealName, setMealName] = useState("");
   const [proteinAmount, setProteinAmount] = useState("");
 
@@ -13,20 +15,22 @@ const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
       return;
     }
 
-    let userEmail = "acosta.eric505@icloud.com";
+    // let userEmail = "acosta.eric505@icloud.com";
 
     try {
       const response = await fetch(
-        `http://localhost:4000/user/addEntry/${userEmail}`,
+        `http://localhost:4000/user/addEntry`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${cookies.token}` 
           },
           body: JSON.stringify({
             mealName,
             proteinAmount: Number(proteinAmount),
           }),
+          credentials: 'include'
         }
       );
 

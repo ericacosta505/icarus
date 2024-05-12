@@ -60,63 +60,63 @@ const Home = () => {
 
   // Fetch the user's protein goal
   useEffect(() => {
-    const userEmail = "acosta.eric505@icloud.com";
-    if (userEmail) {
-      setIsLoading(true);
-      const fetchProteinGoal = async () => {
-        try {
-          const response = await axios.get(
-            `http://localhost:4000/user/getProteinGoal/${userEmail}`
-          );
-          if (response.data.proteinGoal) {
-            setProteinGoal(response.data.proteinGoal);
-          }
-          setIsLoading(false);
-        } catch (error) {
-          console.error("Error fetching protein goal:", error);
-          setIsLoading(false);
+    setIsLoading(true);
+    const fetchProteinGoal = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/user/getProteinGoal",
+          { headers: { Authorization: `Bearer ${cookies.token}` }, withCredentials: true }
+        );
+        if (response.data.proteinGoal) {
+          setProteinGoal(response.data.proteinGoal);
         }
-      };
-
-      fetchProteinGoal();
-    }
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching protein goal:", error);
+        setIsLoading(false);
+      }
+    };
+  
+    fetchProteinGoal();
   }, []);
+  
 
   // Ensuring fetchTodaysEntries can be easily called
   const fetchTodaysEntries = async () => {
-    const userEmail = "acosta.eric505@icloud.com";
     try {
       setisEntryLoading(true);
       const response = await axios.get(
-        `http://localhost:4000/user/getTodaysEntries/${userEmail}`
+        "http://localhost:4000/user/getTodaysEntries",
+        { headers: { Authorization: `Bearer ${cookies.token}` }, withCredentials: true }
       );
       if (response.data.todaysEntries) {
         setTodaysEntries(response.data.todaysEntries);
         setisEntryLoading(false);
       }
     } catch (error) {
-      console.error("Error fetching todays entries:", error);
+      console.error("Error fetching today's entries:", error);
       setisEntryLoading(false);
     }
   };
+  
 
   const fetchSumTodaysEntries = async () => {
-    const userEmail = "acosta.eric505@icloud.com";
     try {
       const response = await axios.get(
-        `http://localhost:4000/user/sumTodaysEntries/${userEmail}`
+        "http://localhost:4000/user/sumTodaysEntries",
+        { headers: { Authorization: `Bearer ${cookies.token}` }, withCredentials: true }
       );
       if (response.data.totalProteinToday !== undefined) {
         setProteinConsumed(response.data.totalProteinToday);
       } else {
-        // Explicitly set to 0 if no entries or undefined is returned
-        setProteinConsumed(0);
+        setProteinConsumed(0);  // Reset to 0 if undefined
       }
     } catch (error) {
-      console.error("Error fetching sum of todays entries:", error);
-      setProteinConsumed(0); // Ensure reset to 0 on error too
+      console.error("Error fetching sum of today's entries:", error);
+      setProteinConsumed(0);
     }
   };
+  
   // Use this function in useEffect to initially load entries
   useEffect(() => {
     fetchTodaysEntries();

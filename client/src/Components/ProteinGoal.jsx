@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
+import { useCookies } from 'react-cookie'; // Import useCookies
 
 const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
+  const [cookies] = useCookies(['token']);
   const [isEditing, setIsEditing] = useState(false);
   const [proteinGoal, setProteinGoal] = useState(proteinGoalValue);
 
@@ -24,14 +26,16 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
   };
 
   const handleUpdateClick = () => {
-    const userEmail = "acosta.eric505@icloud.com"; // Replace with actual email retrieval logic
+    // const userEmail = "acosta.eric505@icloud.com"; // Replace with actual email retrieval logic
 
-    fetch(`http://localhost:4000/user/updateProteinGoal/${userEmail}`, {
+    fetch(`http://localhost:4000/user/updateProteinGoal`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${cookies.token}` 
       },
       body: JSON.stringify({ proteinGoal }),
+      credentials: 'include'
     })
       .then((response) => {
         if (!response.ok) {
