@@ -45,11 +45,11 @@ const EntryList = ({
       ) : todaysEntries.length === 0 ? (
         <div>No Entries Found</div>
       ) : (
-        <ul>
+        <ul className="entryList">
           {todaysEntries.map((entry) => (
             <li key={entry._id} className="todayEntryItems">
               <div className="entryContent">
-                {entry.mealName} - Protein: {entry.proteinAmount}g
+                {entry.mealName} - {entry.proteinAmount}g
               </div>
               <p
                 className="deleteEntry"

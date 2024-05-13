@@ -32,6 +32,11 @@ html {
   transform: translate(-50%, -50%);
 }
 
+.form_container button {
+  margin-bottom: 1rem;
+  width: 22.25rem;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -60,8 +65,7 @@ input[type="password"] {
 input[type="email"]:focus,
 input[type="password"]:focus {
   outline: none;
-  border-color: gold;
-  box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.5);
+  border-color: #0071e3;
 }
 
 button {
@@ -83,7 +87,7 @@ button:hover {
 }
 
 a {
-  color: gold;
+  color: #0071e3;
   text-decoration: none;
 }
 
@@ -197,6 +201,10 @@ a:hover {
 
 .entryRow button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.entryList {
+  padding-left: 0rem;
 }
 
 .menu {
@@ -354,6 +362,7 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  padding-bottom: 0.5rem;
 }
 
 .deleteEntry {
