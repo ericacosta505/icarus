@@ -9,7 +9,7 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
 
   useEffect(() => {
     setProteinGoal(proteinGoalValue);
-  }, [proteinGoalValue]); // Update state when prop changes
+  }, [proteinGoalValue]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -17,7 +17,6 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
 
   const handleProteinGoalChange = (event) => {
     const value = event.target.value;
-    // Allow only non-negative integers
     if (/^\d*$/.test(value)) {
       setProteinGoal(value);
     }
@@ -30,7 +29,7 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${cookies.token}`,
       },
-      body: JSON.stringify({ proteinGoal }), // Ensure value is sent as a number
+      body: JSON.stringify({ proteinGoal }),
       credentials: "include",
     })
       .then((response) => {
@@ -72,7 +71,7 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
               onChange={handleProteinGoalChange}
               autoFocus
             />
-            <button onClick={handleUpdateClick}>update</button>
+            <button onClick={handleUpdateClick}>Update</button>
           </>
         ) : (
           <>

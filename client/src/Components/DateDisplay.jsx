@@ -1,8 +1,7 @@
-const DateDisplay = ({ isDarkMode }) => {
-  // Create a new Date object from the current timestamp
-  const currentDate = new Date(Date.now());
+import React from "react";
 
-  // Format the date to display only the month and day
+const DateDisplay = ({ isDarkMode }) => {
+  const currentDate = new Date(Date.now());
   const formattedMonth = currentDate.toLocaleDateString(undefined, {
     month: "long",
   });
@@ -12,7 +11,11 @@ const DateDisplay = ({ isDarkMode }) => {
 
   return (
     <div
-      className={`${isDarkMode ? "darkContainer displayDate" : "dateDisplayContainer displayDate"}`}
+      className={`${
+        isDarkMode
+          ? "darkContainer displayDate"
+          : "dateDisplayContainer displayDate"
+      }`}
     >
       <div>{formattedMonth}</div>
       <div>{formattedDay}</div>

@@ -8,7 +8,6 @@ const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
 
   const handleProteinChange = (event) => {
     const value = event.target.value;
-    // Allow only non-negative numbers
     if (/^\d*$/.test(value)) {
       setProteinAmount(value);
     }
@@ -35,7 +34,6 @@ const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
       });
 
       if (response.ok) {
-        console.log("Entry added successfully");
         setMealName("");
         setProteinAmount("");
         onEntryAdded();
@@ -57,12 +55,12 @@ const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
           placeholder="Meal Name"
           onChange={(e) => setMealName(e.target.value)}
           value={mealName}
-        ></input>
+        />
         <input
           placeholder="Protein Amount"
           onChange={handleProteinChange}
           value={proteinAmount}
-        ></input>
+        />
         <button onClick={handleAddEntry}>Add</button>
       </div>
     </div>

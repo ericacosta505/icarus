@@ -1,6 +1,6 @@
 import React from "react";
 import Loader from "./Loader";
-import { useCookies } from "react-cookie"; // Import useCookies
+import { useCookies } from "react-cookie";
 
 const EntryList = ({
   isDarkMode,
@@ -9,7 +9,7 @@ const EntryList = ({
   onEntryDelete,
   handleEntryDelete,
 }) => {
-  const [cookies] = useCookies(["token"]); // Access the cookies
+  const [cookies] = useCookies(["token"]);
 
   const handleDeleteEntry = async (entryId) => {
     try {
@@ -33,7 +33,7 @@ const EntryList = ({
         console.error("Failed to delete entry.");
       }
     } catch (error) {
-      console.error("Error deleteing entry:", error);
+      console.error("Error deleting entry:", error);
     }
   };
 

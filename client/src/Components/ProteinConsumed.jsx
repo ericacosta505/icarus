@@ -5,7 +5,6 @@ const ProteinConsumed = ({ isDarkMode, proteinGoalValue, proteinConsumed }) => {
   const goalValue = Number(proteinGoalValue);
   const consumedValue = Number(proteinConsumed);
 
-  // State to store the chart data
   const [chartData, setChartData] = useState({
     labels: ["Protein Consumed", "Remaining Goal"],
     datasets: [
@@ -22,7 +21,6 @@ const ProteinConsumed = ({ isDarkMode, proteinGoalValue, proteinConsumed }) => {
     ],
   });
 
-  // Update the chart data whenever proteinConsumed or proteinGoal changes
   useEffect(() => {
     setChartData({
       labels: ["Protein Consumed", "Remaining Goal"],
@@ -42,7 +40,7 @@ const ProteinConsumed = ({ isDarkMode, proteinGoalValue, proteinConsumed }) => {
         },
       ],
     });
-  }, [proteinConsumed, proteinGoalValue]); // Dependencies that trigger the update
+  }, [proteinConsumed, proteinGoalValue]);
 
   return (
     <div

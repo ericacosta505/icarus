@@ -1,3 +1,5 @@
+import React from "react";
+
 const Header = ({
   toggleDropdown,
   showDropdown,
@@ -8,15 +10,12 @@ const Header = ({
 }) => {
   return (
     <div className="header">
-      {isDarkMode ? (
-        <div className="darkModeMenu" onClick={toggleDropdown}>
-          ☰
-        </div>
-      ) : (
-        <div className="menu" onClick={toggleDropdown}>
-          ☰
-        </div>
-      )}
+      <div
+        className={isDarkMode ? "darkModeMenu" : "menu"}
+        onClick={toggleDropdown}
+      >
+        ☰
+      </div>
       {showDropdown && (
         <div className={isDarkMode ? "darkModeSidebar" : "sidebar"}>
           <button onClick={toggleDarkMode}>

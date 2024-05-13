@@ -17,11 +17,11 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(credentials), // Convert credentials object to a JSON string
-        credentials: "include", // Ensure cookies are included with the request
+        body: JSON.stringify(credentials),
+        credentials: "include",
       });
 
-      const data = await response.json(); // Parse the JSON response into a JavaScript object
+      const data = await response.json();
 
       if (data.success) {
         setTimeout(() => navigate("/home"), 1000);

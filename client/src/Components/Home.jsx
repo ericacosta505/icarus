@@ -1,10 +1,8 @@
-// Importing necessary modules and components from React, React Router, and other libraries
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 
-// Importing custom components
 import Header from "./Header";
 import ProteinGoal from "./ProteinGoal";
 import ProteinConsumed from "./ProteinConsumed";
@@ -12,7 +10,6 @@ import AddEntryForm from "./AddEntryForm";
 import DateDisplay from "./DateDisplay";
 import EntryList from "./EntryList";
 
-// Main Home component
 const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies(["token"]);
@@ -26,7 +23,6 @@ const Home = () => {
   const [proteinConsumed, setProteinConsumed] = useState(0);
   const [entryDeleted, setEntryDeleted] = useState(false);
 
-  // Verify cookie existence and validate user session
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
@@ -61,7 +57,6 @@ const Home = () => {
     verifyCookie();
   }, [cookies.token, navigate, removeCookie]);
 
-  // Fetch the user's protein goal
   useEffect(() => {
     setIsLoading(true);
     const fetchProteinGoal = async () => {
@@ -91,7 +86,6 @@ const Home = () => {
     fetchProteinGoal();
   }, []);
 
-  // Ensuring fetchTodaysEntries can be easily called
   const fetchTodaysEntries = async () => {
     try {
       setisEntryLoading(true);
@@ -134,7 +128,7 @@ const Home = () => {
       if (data.totalProteinToday !== undefined) {
         setProteinConsumed(data.totalProteinToday);
       } else {
-        setProteinConsumed(0); // Reset to 0 if undefined
+        setProteinConsumed(0);
       }
     } catch (error) {
       console.error("Error fetching sum of today's entries:", error);
@@ -142,7 +136,6 @@ const Home = () => {
     }
   };
 
-  // Use this function in useEffect to initially load entries
   useEffect(() => {
     fetchTodaysEntries();
   }, [entryDeleted]);
@@ -151,33 +144,27 @@ const Home = () => {
     fetchSumTodaysEntries();
   }, [entryDeleted]);
 
-  // Function to handle entry deletion
   const handleEntryDelete = () => {
-    setEntryDeleted(!entryDeleted); // Toggle the state to trigger re-render
+    setEntryDeleted(!entryDeleted);
     fetchSumTodaysEntries();
   };
 
-  // Logout function to clear session and navigate to login
   const logout = () => {
     removeCookie("token");
-    document.body.classList.remove("showSidebar"); // Hide sidebar on logout
+    document.body.classList.remove("showSidebar");
     navigate("/login");
   };
 
-  // Update protein goal function
   const updateProteinGoal = (newGoal) => {
     setProteinGoal(newGoal);
   };
 
-  // Registering components for Chart.js
   Chart.register(ArcElement, Tooltip, Legend);
 
-  // State and handlers for UI features
   const toggleDropdown = () => {
     const shouldShowDropdown = !showDropdown;
     setShowDropdown(shouldShowDropdown);
 
-    // Toggling the 'showSidebar' class on the body
     if (shouldShowDropdown) {
       document.body.classList.add("showSidebar");
     } else {
@@ -187,7 +174,6 @@ const Home = () => {
 
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
-  // Apply dark mode to the body element
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("darkBody");
@@ -196,14 +182,12 @@ const Home = () => {
     }
   }, [isDarkMode]);
 
-  // Clean up sidebar class when component unmounts
   useEffect(() => {
     return () => {
       document.body.classList.remove("showSidebar");
     };
   }, []);
 
-  // Component rendering
   return (
     <>
       <Header

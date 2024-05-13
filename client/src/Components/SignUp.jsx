@@ -20,13 +20,13 @@ const Signup = () => {
       const response = await fetch("http://localhost:4000/signup", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // This is needed to send JSON data
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(inputValue), // Convert your input values to JSON
+        body: JSON.stringify(inputValue),
         credentials: "include",
       });
 
-      const data = await response.json(); // Parse JSON response into a JavaScript object
+      const data = await response.json();
 
       if (data.success) {
         setTimeout(() => navigate("/login"), 1000);
