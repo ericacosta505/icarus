@@ -137,6 +137,11 @@ a:hover {
   font-weight: bold;
 }
 
+.proteinGoalAmount button {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  margin-left: 1rem;
+}
+
 .proteinGoalContainerHeader button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
