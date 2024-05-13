@@ -1,51 +1,48 @@
 import { useState } from "react";
-import { useCookies } from 'react-cookie'; // Import useCookies
+import { useCookies } from "react-cookie";
 
 const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
-  const [cookies] = useCookies(['token']);
+  const [cookies] = useCookies(["token"]);
   const [mealName, setMealName] = useState("");
   const [proteinAmount, setProteinAmount] = useState("");
+
+  const handleProteinChange = (event) => {
+    const value = event.target.value;
+    // Allow only non-negative numbers
+    if (/^\d*$/.test(value)) {
+      setProteinAmount(value);
+    }
+  };
 
   const handleAddEntry = async () => {
     if (!mealName || !proteinAmount) {
       alert("Please fill in all fields.");
       return;
-    } else if (proteinAmount < 0) {
-      alert("Protein Amount must be greater than 0");
-      return;
     }
 
-    // let userEmail = "acosta.eric505@icloud.com";
-
     try {
-      const response = await fetch(
-        `http://localhost:4000/user/addEntry`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${cookies.token}` 
-          },
-          body: JSON.stringify({
-            mealName,
-            proteinAmount: Number(proteinAmount),
-          }),
-          credentials: 'include'
-        }
-      );
+      const response = await fetch(`http://localhost:4000/user/addEntry`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${cookies.token}`,
+        },
+        body: JSON.stringify({
+          mealName,
+          proteinAmount: Number(proteinAmount),
+        }),
+        credentials: "include",
+      });
 
       if (response.ok) {
-        // Handle the successful entry addition here
         console.log("Entry added successfully");
         setMealName("");
         setProteinAmount("");
         onEntryAdded();
       } else {
-        // Handle errors here
         console.error("Failed to add entry");
       }
     } catch (error) {
-      // Handle network errors here
       console.error("There was an error adding the entry", error);
     }
   };
@@ -58,16 +55,12 @@ const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
       <div className="entryRow">
         <input
           placeholder="Meal Name"
-          onChange={(e) => {
-            setMealName(e.target.value);
-          }}
+          onChange={(e) => setMealName(e.target.value)}
           value={mealName}
         ></input>
         <input
           placeholder="Protein Amount"
-          onChange={(e) => {
-            setProteinAmount(e.target.value);
-          }}
+          onChange={handleProteinChange}
           value={proteinAmount}
         ></input>
         <button onClick={handleAddEntry}>Add</button>
