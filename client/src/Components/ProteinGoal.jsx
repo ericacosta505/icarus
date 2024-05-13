@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
-import { useCookies } from 'react-cookie'; // Import useCookies
+import { useCookies } from "react-cookie";
 
 const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
-  const [cookies] = useCookies(['token']);
+  const [cookies] = useCookies(["token"]);
   const [isEditing, setIsEditing] = useState(false);
   const [proteinGoal, setProteinGoal] = useState(proteinGoalValue);
 
@@ -15,27 +15,23 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
     setIsEditing(true);
   };
 
-  const handleProteinGoalChange = (e) => {
-    if (e.target.value >= 0) {
-      setProteinGoal(e.target.value);
-    } else {
-      alert("Protein Goal must be greater than 0");
-      setProteinGoal(proteinGoalValue);
-      setIsEditing(false);
+  const handleProteinGoalChange = (event) => {
+    const value = event.target.value;
+    // Allow only non-negative integers
+    if (/^\d*$/.test(value)) {
+      setProteinGoal(value);
     }
   };
 
   const handleUpdateClick = () => {
-    // const userEmail = "acosta.eric505@icloud.com"; // Replace with actual email retrieval logic
-
     fetch(`http://localhost:4000/user/updateProteinGoal`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${cookies.token}` 
+        Authorization: `Bearer ${cookies.token}`,
       },
-      body: JSON.stringify({ proteinGoal }),
-      credentials: 'include'
+      body: JSON.stringify({ proteinGoal }), // Ensure value is sent as a number
+      credentials: "include",
     })
       .then((response) => {
         if (!response.ok) {
@@ -45,14 +41,14 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
       })
       .then((data) => {
         setIsEditing(false);
-        // Make sure data.proteinGoal is the updated value you expect
         onUpdate(data.user.proteinGoal);
       })
       .catch((error) => {
+        alert("There was an error with your goal change. Please try again.");
         console.error("Error:", error);
+        setIsEditing(false);
+        window.location.reload();
       });
-
-    setIsEditing(false);
   };
 
   return (
