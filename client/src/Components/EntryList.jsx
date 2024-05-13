@@ -1,7 +1,7 @@
 import React from "react";
 import Loader from "./Loader";
 import axios from "axios";
-import { useCookies } from 'react-cookie'; // Import useCookies
+import { useCookies } from "react-cookie"; // Import useCookies
 
 const EntryList = ({
   isDarkMode,
@@ -10,23 +10,28 @@ const EntryList = ({
   onEntryDelete,
   handleEntryDelete,
 }) => {
-
-  const [cookies] = useCookies(['token']); // Access the cookies
+  const [cookies] = useCookies(["token"]); // Access the cookies
 
   const handleDeleteEntry = async (entryId) => {
-    // let userEmail = "acosta.eric505@icloud.com";
     try {
       const response = await axios.delete(
-        `http://localhost:4000/user/deleteEntry/${entryId}`, {
+        `http://localhost:4000/user/deleteEntry/${entryId}`,
+        {
           headers: {
-            'Authorization': `Bearer ${cookies.token}` // Use the token from cookies
+            Authorization: `Bearer ${cookies.token}`, // Use the token from cookies
           },
-          withCredentials: true
+          withCredentials: true,
         }
       );
-      // Assuming you have a method to refresh the entries after deletion, you can call it here
-      onEntryDelete();
-      handleEntryDelete();
+
+      if (response.status >= 200 && response.status < 300) {
+        // Check for successful status code
+        console.log("Entry deleted successfully.");
+        onEntryDelete();
+        handleEntryDelete();
+      } else {
+        console.error("Failed to delete entry.");
+      }
     } catch (error) {
       console.error("Error deleting entry:", error);
     }
