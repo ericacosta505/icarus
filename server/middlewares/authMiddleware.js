@@ -15,13 +15,11 @@ const userVerification = async (req, res, next) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    req.user = user;  // Attach the user to the request object
+    req.user = user;
     next();
   } catch (error) {
     res.status(401).json({ message: "Invalid token" });
   }
 };
-
-
 
 export default userVerification;

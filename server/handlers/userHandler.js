@@ -2,10 +2,12 @@ import User from "../models/user.js";
 
 const updateProteinGoal = async (req, res) => {
   const { proteinGoal } = req.body;
-  const user = req.user;  // Using the user attached in middleware
+  const user = req.user;
 
   if (!proteinGoal) {
-    return res.status(400).json({ message: "You must provide a protein goal." });
+    return res
+      .status(400)
+      .json({ message: "You must provide a protein goal." });
   }
 
   try {
@@ -14,10 +16,11 @@ const updateProteinGoal = async (req, res) => {
     res.json({ message: "Protein goal updated successfully!", user: user });
   } catch (error) {
     console.error("Error updating protein goal:", error);
-    res.status(500).json({ message: "Error updating protein goal", error: error });
+    res
+      .status(500)
+      .json({ message: "Error updating protein goal", error: error });
   }
 };
-
 
 const getProteinGoal = async (req, res) => {
   const user = req.user;
@@ -27,7 +30,6 @@ const getProteinGoal = async (req, res) => {
   }
   res.json({ proteinGoal: user.proteinGoal });
 };
-
 
 const addEntry = async (req, res) => {
   const user = req.user;
@@ -44,10 +46,11 @@ const addEntry = async (req, res) => {
     res.status(201).json(newEntry);
   } catch (error) {
     console.error("Error adding entry:", error);
-    res.status(500).json({ message: "Error adding entry", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error adding entry", error: error.message });
   }
 };
-
 
 const getTodaysEntries = async (req, res) => {
   const user = req.user;
@@ -60,14 +63,13 @@ const getTodaysEntries = async (req, res) => {
   const todayEnd = new Date();
   todayEnd.setHours(23, 59, 59, 999);
 
-  const todaysEntries = user.entries.filter(entry => {
+  const todaysEntries = user.entries.filter((entry) => {
     const entryDate = new Date(entry.createdAt);
     return entryDate >= todayStart && entryDate <= todayEnd;
   });
 
   res.json({ todaysEntries });
 };
-
 
 const sumTodaysEntries = async (req, res) => {
   const user = req.user;
@@ -80,15 +82,20 @@ const sumTodaysEntries = async (req, res) => {
   const todayEnd = new Date();
   todayEnd.setHours(23, 59, 59, 999);
 
-  const todaysEntries = user.entries.filter(entry => {
+  const todaysEntries = user.entries.filter((entry) => {
     const entryDate = new Date(entry.createdAt);
     return entryDate >= todayStart && entryDate <= todayEnd;
   });
 
-  const totalProteinToday = todaysEntries.reduce((sum, entry) => sum + (Number(entry.proteinAmount) || 0), 0);
-  res.json({ message: "Total protein consumed today:", totalProteinToday: totalProteinToday });
+  const totalProteinToday = todaysEntries.reduce(
+    (sum, entry) => sum + (Number(entry.proteinAmount) || 0),
+    0
+  );
+  res.json({
+    message: "Total protein consumed today:",
+    totalProteinToday: totalProteinToday,
+  });
 };
-
 
 const deleteEntry = async (req, res) => {
   const user = req.user;
@@ -99,7 +106,9 @@ const deleteEntry = async (req, res) => {
   }
 
   try {
-    const indexToDelete = user.entries.findIndex(entry => entry._id.toString() === entryId);
+    const indexToDelete = user.entries.findIndex(
+      (entry) => entry._id.toString() === entryId
+    );
 
     if (indexToDelete === -1) {
       return res.status(404).json({ message: "Entry not found." });
@@ -110,10 +119,11 @@ const deleteEntry = async (req, res) => {
     res.json({ message: "Entry deleted successfully." });
   } catch (error) {
     console.error("Error deleting entry:", error);
-    res.status(500).json({ message: "Error deleting entry", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error deleting entry", error: error.message });
   }
 };
-
 
 export default {
   updateProteinGoal,
