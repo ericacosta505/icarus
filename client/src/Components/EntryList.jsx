@@ -1,6 +1,5 @@
 import React from "react";
 import Loader from "./Loader";
-import axios from "axios";
 import { useCookies } from "react-cookie"; // Import useCookies
 
 const EntryList = ({
@@ -14,18 +13,19 @@ const EntryList = ({
 
   const handleDeleteEntry = async (entryId) => {
     try {
-      const response = await axios.delete(
+      const response = await fetch(
         `http://localhost:4000/user/deleteEntry/${entryId}`,
         {
+          method: "DELETE",
           headers: {
-            Authorization: `Bearer ${cookies.token}`, // Use the token from cookies
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookies.token}`,
           },
-          withCredentials: true,
+          credentials: "include",
         }
       );
 
-      if (response.status >= 200 && response.status < 300) {
-        // Check for successful status code
+      if (response.ok) {
         console.log("Entry deleted successfully.");
         onEntryDelete();
         handleEntryDelete();
@@ -33,7 +33,7 @@ const EntryList = ({
         console.error("Failed to delete entry.");
       }
     } catch (error) {
-      console.error("Error deleting entry:", error);
+      console.error("Error deleteing entry:", error);
     }
   };
 

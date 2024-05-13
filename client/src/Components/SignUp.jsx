@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -18,19 +17,24 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        "http://localhost:4000/signup",
-        inputValue,
-        { withCredentials: true }
-      );
+      const response = await fetch("http://localhost:4000/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // This is needed to send JSON data
+        },
+        body: JSON.stringify(inputValue), // Convert your input values to JSON
+        credentials: "include",
+      });
+
+      const data = await response.json(); // Parse JSON response into a JavaScript object
 
       if (data.success) {
         setTimeout(() => navigate("/login"), 1000);
       } else {
-        alert('Signup Failed')
+        alert("Signup Failed");
       }
     } catch (error) {
-      alert('Something went wrong')
+      alert("Something went wrong");
     } finally {
       setInputValue({ email: "", password: "", username: "" });
     }

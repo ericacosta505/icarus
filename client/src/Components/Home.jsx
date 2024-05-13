@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import axios from "axios";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 
 // Importing custom components
@@ -36,11 +35,15 @@ const Home = () => {
       }
 
       try {
-        const { data } = await axios.post(
-          "http://localhost:4000",
-          {},
-          { withCredentials: true }
-        );
+        const response = await fetch("http://localhost:4000", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        });
+
+        const data = await response.json();
 
         if (data.status) {
           setUsername(data.user);
@@ -63,12 +66,20 @@ const Home = () => {
     setIsLoading(true);
     const fetchProteinGoal = async () => {
       try {
-        const response = await axios.get(
+        const response = await fetch(
           "http://localhost:4000/user/getProteinGoal",
-          { headers: { Authorization: `Bearer ${cookies.token}` }, withCredentials: true }
+          {
+            headers: {
+              Authorization: `Bearer ${cookies.token}`,
+            },
+            credentials: "include",
+          }
         );
-        if (response.data.proteinGoal) {
-          setProteinGoal(response.data.proteinGoal);
+
+        const data = await response.json();
+
+        if (data.proteinGoal) {
+          setProteinGoal(data.proteinGoal);
         }
         setIsLoading(false);
       } catch (error) {
@@ -76,21 +87,28 @@ const Home = () => {
         setIsLoading(false);
       }
     };
-  
+
     fetchProteinGoal();
   }, []);
-  
 
   // Ensuring fetchTodaysEntries can be easily called
   const fetchTodaysEntries = async () => {
     try {
       setisEntryLoading(true);
-      const response = await axios.get(
+      const response = await fetch(
         "http://localhost:4000/user/getTodaysEntries",
-        { headers: { Authorization: `Bearer ${cookies.token}` }, withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.token}`,
+          },
+          credentials: "include",
+        }
       );
-      if (response.data.todaysEntries) {
-        setTodaysEntries(response.data.todaysEntries);
+
+      const data = await response.json();
+
+      if (data.todaysEntries) {
+        setTodaysEntries(data.todaysEntries);
         setisEntryLoading(false);
       }
     } catch (error) {
@@ -98,25 +116,32 @@ const Home = () => {
       setisEntryLoading(false);
     }
   };
-  
 
   const fetchSumTodaysEntries = async () => {
     try {
-      const response = await axios.get(
+      const response = await fetch(
         "http://localhost:4000/user/sumTodaysEntries",
-        { headers: { Authorization: `Bearer ${cookies.token}` }, withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.token}`,
+          },
+          credentials: "include",
+        }
       );
-      if (response.data.totalProteinToday !== undefined) {
-        setProteinConsumed(response.data.totalProteinToday);
+
+      const data = await response.json();
+
+      if (data.totalProteinToday !== undefined) {
+        setProteinConsumed(data.totalProteinToday);
       } else {
-        setProteinConsumed(0);  // Reset to 0 if undefined
+        setProteinConsumed(0); // Reset to 0 if undefined
       }
     } catch (error) {
       console.error("Error fetching sum of today's entries:", error);
       setProteinConsumed(0);
     }
   };
-  
+
   // Use this function in useEffect to initially load entries
   useEffect(() => {
     fetchTodaysEntries();
