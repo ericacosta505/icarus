@@ -22,7 +22,7 @@ html {
 .form_container {
   backdrop-filter: blur(0.5rem);
   padding: 4rem;
-  width: 30rem;
+  width: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +52,7 @@ input[type="text"],
 input[type="password"] {
   width: 100%;
   padding: 1rem;
-  border: none;
+  border: 0.1rem solid rgb(94, 94, 94);
   border-radius: 0.5rem;
   margin-top: 0.5rem;
 }
@@ -65,7 +65,7 @@ input[type="password"]:focus {
 }
 
 button {
-  background-color: #0071e3; /* Example CTA color */
+  background-color: #0071e3;
   color: #ffffff;
   padding: 0.8rem 1.2rem;
   border: none;
@@ -75,7 +75,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker on hover */
+  background-color: #0056b3;
 }
 
 .pentcilButton {
@@ -91,7 +91,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Home Page */
 .header {
   width: 100%;
   display: flex;
@@ -136,6 +135,10 @@ a:hover {
 .proteinGoalAmount span {
   font-size: 5rem;
   font-weight: bold;
+}
+
+.proteinGoalContainerHeader button {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
 .proteinConsumedContainer {
@@ -187,6 +190,10 @@ a:hover {
   padding-left: 0.5rem;
 }
 
+.entryRow button {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
 .menu {
   cursor: pointer;
   padding: 1rem;
@@ -221,7 +228,7 @@ a:hover {
   height: 20rem;
   width: 20rem;
   padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   border-radius: 1rem;
 }
 
@@ -230,8 +237,22 @@ a:hover {
   height: 20rem;
   width: 52rem;
   padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   border-radius: 1rem;
+}
+
+.darkContainerLong input {
+  background-color: #454545;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  border: solid #454545 thin;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  padding-left: 0.5rem;
+  color: #ffffff;
+}
+
+.darkContainerLong button {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
 .darkBody {
@@ -257,11 +278,10 @@ a:hover {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 250px; /* Adjust width to your liking */
+  width: 250px;
   background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  /* padding: 1rem; */
   display: flex;
   flex-direction: column;
   padding-top: 3rem;
@@ -270,31 +290,28 @@ a:hover {
 .sidebar button {
   display: block;
   width: 100%;
-  /* margin-bottom: 1rem; Adds space between buttons */
   background-color: #ffffff;
   color: black;
   border-top: 1px solid rgb(223, 223, 223);
   border-bottom: 1px solid rgb(223, 223, 223);
   border-radius: 0;
-  border-left: none; /* No border on the left */
-  border-right: none; /* No border on the right */
+  border-left: none;
+  border-right: none;
 }
 
-.sidebar button:hover{
-  background-color: rgb(223, 223, 223);;
+.sidebar button:hover {
+  background-color: rgb(223, 223, 223);
 }
-
 
 .darkModeSidebar {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 250px; /* Adjust width to your liking */
+  width: 250px;
   background-color: #454545;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  /* padding: 1rem; */
   display: flex;
   flex-direction: column;
   padding-top: 3rem;
@@ -303,21 +320,19 @@ a:hover {
 .darkModeSidebar button {
   display: block;
   width: 100%;
-  /* margin-bottom: 1rem; Adds space between buttons */
   background-color: #454545;
   color: black;
   border-top: 1px solid rgb(94, 94, 94);
   border-bottom: 1px solid rgb(94, 94, 94);
   border-radius: 0;
-  border-left: none; /* No border on the left */
-  border-right: none; /* No border on the right */
+  border-left: none;
+  border-right: none;
   color: white;
 }
 
-.darkModeSidebar button:hover{
-  background-color: rgb(94, 94, 94)
+.darkModeSidebar button:hover {
+  background-color: rgb(94, 94, 94);
 }
-
 
 .darkModeMenu {
   cursor: pointer;
@@ -329,31 +344,22 @@ a:hover {
   color: white;
 }
 
-/* This will push the content to the right when the sidebar is visible */
-/* body.showSidebar {
-  padding-left: 250px;
-} */
-
 .todayEntryItems {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative; /* Required for absolute positioning of child */
+  position: relative;
 }
 
 .deleteEntry {
   color: red;
   font-weight: bold;
   cursor: pointer;
-  visibility: hidden; /* Initially hidden */
+  visibility: hidden;
   position: absolute;
   right: 0;
 }
 
 .todayEntryItems:hover .deleteEntry {
-  visibility: visible; /* Show deleteEntry on hover */
+  visibility: visible;
 }
-/* .deleteEntry {
-  color: white;
-  font-weight: bold;
-} */

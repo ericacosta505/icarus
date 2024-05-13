@@ -21,6 +21,20 @@ const ProteinConsumed = ({ isDarkMode, proteinGoalValue, proteinConsumed }) => {
     ],
   });
 
+  const chartOptions = {
+    plugins: {
+      legend: {
+        labels: {
+          color: isDarkMode ? "white" : "black",
+        },
+      },
+      tooltip: {
+        titleFontColor: isDarkMode ? "white" : "black",
+        bodyFontColor: isDarkMode ? "white" : "black",
+      },
+    },
+  };
+
   useEffect(() => {
     setChartData({
       labels: ["Protein Consumed", "Remaining Goal"],
@@ -46,7 +60,11 @@ const ProteinConsumed = ({ isDarkMode, proteinGoalValue, proteinConsumed }) => {
     <div
       className={`${isDarkMode ? "darkContainer" : "proteinConsumedContainer"}`}
     >
-      {goalValue === 0 ? <div>No goal set</div> : <Pie data={chartData} />}
+      {goalValue === 0 ? (
+        <div>No goal set</div>
+      ) : (
+        <Pie data={chartData} options={chartOptions} />
+      )}
     </div>
   );
 };
