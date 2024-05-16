@@ -15,6 +15,10 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
     setIsEditing(true);
   };
 
+  const handleBackClick = () => {
+    setIsEditing(false)
+  }
+
   const handleProteinGoalChange = (event) => {
     const value = event.target.value;
     if (/^\d*$/.test(value)) {
@@ -54,10 +58,16 @@ const ProteinGoal = ({ isDarkMode, proteinGoalValue, isLoading, onUpdate }) => {
     <div className={`${isDarkMode ? "darkContainer" : "proteinGoalContainer"}`}>
       <div className="proteinGoalContainerHeader">
         <div className="containerTitle">Protein Goal</div>
-        {!isEditing && !isLoading && (
-          <button className="pencilButton" onClick={handleEditClick}>
-            <i className="fa-solid fa-pencil"></i>
-          </button>
+        {!isLoading && (
+          isEditing ? (
+            <button className="backButton" onClick={handleBackClick}>
+              <i className="fa-solid fa-arrow-left"></i>
+            </button>
+          ) : (
+            <button className="pencilButton" onClick={handleEditClick}>
+              <i className="fa-solid fa-pencil"></i>
+            </button>
+          )
         )}
       </div>
       <div className="proteinGoalAmount">

@@ -55,7 +55,7 @@ const EntryList = ({
                 className="deleteEntry"
                 onClick={() => handleDeleteEntry(entry._id)}
               >
-                <i class="fa-solid fa-trash"></i>
+                <i className="fa-solid fa-trash"></i>
               </p>
             </li>
           ))}
