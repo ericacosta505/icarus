@@ -61,7 +61,9 @@ const AddEntryForm = ({ isDarkMode, onEntryAdded }) => {
           onChange={handleProteinChange}
           value={proteinAmount}
         />
-        <button onClick={handleAddEntry}>Add</button>
+        <button onClick={handleAddEntry}>
+          <i class="fa-solid fa-plus"></i>
+        </button>
       </div>
     </div>
   );
