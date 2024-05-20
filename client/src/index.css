@@ -532,3 +532,15 @@ body.darkBody .react-calendar {
   border-color: #444;
   border-radius: 1rem;
 }
+
+.icarusTitleLogin {
+  position: absolute;
+  top: 23rem;
+  left: 71.5rem;
+}
+
+.icarusTitleSignup {
+  position: absolute;
+  top: 20rem;
+  left: 71.5rem;
+}

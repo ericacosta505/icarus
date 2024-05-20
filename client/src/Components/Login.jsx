@@ -46,35 +46,38 @@ const Login = () => {
   }, []);
 
   return (
-    <div className={isDarkMode ? "darkModeFormContainer" : "form_container"}>
-      <h2>Login Account</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={inputValue.email}
-            placeholder="Enter your email"
-            onChange={handleOnChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={inputValue.password}
-            placeholder="Enter your password"
-            onChange={handleOnChange}
-          />
-        </div>
-        <button type="submit">Submit</button>
-        <span>
-          Don't have an account? <Link to="/signup">Signup</Link>
-        </span>
-      </form>
-    </div>
+    <>
+      <h1 className="icarusTitleLogin">My Protein Tracker</h1>
+      <div className={isDarkMode ? "darkModeFormContainer" : "form_container"}>
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={inputValue.email}
+              placeholder="Enter your email"
+              onChange={handleOnChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={inputValue.password}
+              placeholder="Enter your password"
+              onChange={handleOnChange}
+            />
+          </div>
+          <button type="submit">Submit</button>
+          <span>
+            Don't have an account? <Link to="/signup">Signup</Link>
+          </span>
+        </form>
+      </div>
+    </>
   );
 };
 
