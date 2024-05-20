@@ -141,8 +141,6 @@ const getAllPastEntries = async (req, res) => {
   });
 
   res.json({ pastEntries });
-
-  console.log(pastEntries);
 };
 
 export default {

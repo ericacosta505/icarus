@@ -402,6 +402,11 @@ a:hover {
   justify-content: center;
 }
 
+.calendarAndEntries {
+  display: flex;
+  gap: 10rem;
+}
+
 .containerFull {
   background: #ffffff;
   color: #454545;
@@ -425,4 +430,38 @@ a:hover {
 .entriesList {
   max-height: 300px;
   overflow-y: scroll;
+}
+
+.react-calendar {
+  width: 350px;
+  max-width: 100%;
+  background: white;
+  border: 1px solid #e6e6e6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.125em;
+}
+
+.react-calendar__navigation button {
+  color: #333;
+  min-width: 44px;
+  background: none;
+  font-size: 16px;
+  border: none;
+}
+
+.react-calendar__month-view__days__day {
+  color: #666;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.react-calendar__tile--active {
+  background-color: #007aff;
+  color: white;
+  border-radius: 8px;
 }
