@@ -191,6 +191,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   gap: 10rem;
+  margin-bottom: 2rem;
 }
 
 .addEntryContainer {
@@ -393,4 +394,35 @@ a:hover {
 
 .todayEntryItems:hover .deleteEntry {
   visibility: visible;
+}
+
+.pastEntryContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerFull {
+  background: #ffffff;
+  color: #454545;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  height: 20rem;
+  width: 84rem;
+  padding: 1rem;
+}
+
+.darkContainerFull {
+  background: #454545;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  height: 20rem;
+  width: 84rem;
+  padding: 1rem;
+}
+
+.entriesList {
+  max-height: 300px;
+  overflow-y: scroll;
 }

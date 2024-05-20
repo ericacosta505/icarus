@@ -9,6 +9,7 @@ import ProteinConsumed from "./ProteinConsumed";
 import AddEntryForm from "./AddEntryForm";
 import DateDisplay from "./DateDisplay";
 import EntryList from "./EntryList";
+import PastEntries from "./PastEntries";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Home = () => {
   const [isEntryLoading, setisEntryLoading] = useState(true);
   const [proteinConsumed, setProteinConsumed] = useState(0);
   const [entryDeleted, setEntryDeleted] = useState(false);
+  const [pastEntries, setPastEntries] = useState([]);
 
   useEffect(() => {
     const verifyCookie = async () => {
@@ -136,6 +138,31 @@ const Home = () => {
     }
   };
 
+  const fetchPastEntries = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:4000/user/getAllPastEntries",
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.token}`,
+          },
+          credentials: "include",
+        }
+      );
+
+      const data = await response.json();
+      if (data && data.pastEntries) {
+        setPastEntries(data.pastEntries); // Set the past entries state
+      }
+    } catch (error) {
+      console.error("There was an error loading past entries:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPastEntries();
+  }, []);
+
   useEffect(() => {
     fetchTodaysEntries();
   }, [entryDeleted]);
@@ -175,11 +202,11 @@ const Home = () => {
   const toggleDarkMode = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
-    localStorage.setItem('darkMode', newMode);
+    localStorage.setItem("darkMode", newMode);
   };
 
   useEffect(() => {
-    const savedMode = localStorage.getItem('darkMode') === 'true';
+    const savedMode = localStorage.getItem("darkMode") === "true";
     setIsDarkMode(savedMode);
   }, []);
 
@@ -239,6 +266,9 @@ const Home = () => {
           onEntryDelete={fetchTodaysEntries}
           handleEntryDelete={handleEntryDelete}
         />
+      </div>
+      <div className="pastEntryContainer">
+        <PastEntries isDarkMode={isDarkMode} pastEntries={pastEntries} />
       </div>
     </>
   );

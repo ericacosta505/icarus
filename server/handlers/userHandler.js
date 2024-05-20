@@ -125,6 +125,26 @@ const deleteEntry = async (req, res) => {
   }
 };
 
+const getAllPastEntries = async (req, res) => {
+  const user = req.user;
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found." });
+  }
+
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+
+  const pastEntries = user.entries.filter((entry) => {
+    const entryDate = new Date(entry.createdAt);
+    return entryDate < todayStart;
+  });
+
+  res.json({ pastEntries });
+
+  console.log(pastEntries);
+};
+
 export default {
   updateProteinGoal,
   getProteinGoal,
@@ -132,4 +152,5 @@ export default {
   getTodaysEntries,
   sumTodaysEntries,
   deleteEntry,
+  getAllPastEntries,
 };
