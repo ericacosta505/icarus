@@ -258,13 +258,17 @@ const Home = () => {
           onEntryAdded={() => {
             fetchTodaysEntries();
             fetchSumTodaysEntries();
+            fetchPastEntries();
           }}
         />
         <EntryList
           isDarkMode={isDarkMode}
           todaysEntries={todaysEntries}
           isEntryLoading={isEntryLoading}
-          onEntryDelete={fetchTodaysEntries}
+          onEntryDelete={() => {
+            fetchTodaysEntries();
+            fetchPastEntries();
+          }}
           handleEntryDelete={handleEntryDelete}
         />
       </div>

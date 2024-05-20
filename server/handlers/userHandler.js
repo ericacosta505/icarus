@@ -135,9 +135,12 @@ const getAllPastEntries = async (req, res) => {
   const todayStart = new Date();
   todayStart.setHours(0, 0, 0, 0);
 
+  const todayEnd = new Date();
+  todayEnd.setHours(23, 59, 59, 999);
+
   const pastEntries = user.entries.filter((entry) => {
     const entryDate = new Date(entry.createdAt);
-    return entryDate < todayStart;
+    return entryDate <= todayEnd;
   });
 
   res.json({ pastEntries });
