@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -8,6 +8,7 @@ const Signup = () => {
     password: "",
     username: "",
   });
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -40,8 +41,13 @@ const Signup = () => {
     }
   };
 
+  useEffect(() => {
+    const savedMode = localStorage.getItem("darkMode") === "true";
+    setIsDarkMode(savedMode);
+  }, []);
+
   return (
-    <div className="form_container">
+    <div className={isDarkMode ? "darkModeFormContainer" : "form_container"}>
       <h2>Signup Account</h2>
       <form onSubmit={handleSubmit}>
         <div>

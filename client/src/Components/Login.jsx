@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({ email: "", password: "" });
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -39,8 +40,13 @@ const Login = () => {
     setInputValue({ email: "", password: "" });
   };
 
+  useEffect(() => {
+    const savedMode = localStorage.getItem("darkMode") === "true";
+    setIsDarkMode(savedMode);
+  }, []);
+
   return (
-    <div className="form_container">
+    <div className={isDarkMode ? "darkModeFormContainer" : "form_container"}>
       <h2>Login Account</h2>
       <form onSubmit={handleSubmit}>
         <div>
