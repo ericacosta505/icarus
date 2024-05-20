@@ -215,6 +215,7 @@ const Home = () => {
       document.body.classList.add("darkBody");
     } else {
       document.body.classList.remove("darkBody");
+      document.body.classList.remove("dark-mode");
     }
   }, [isDarkMode]);
 

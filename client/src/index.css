@@ -254,6 +254,11 @@ a:hover {
   color: #fff;
 }
 
+.light-mode {
+  background-color: #fff;
+  color: #333;
+}
+
 .darkContainer {
   background-color: #454545;
   height: 20rem;
