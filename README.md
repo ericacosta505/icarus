@@ -8,7 +8,9 @@ Icarus is designed to help you monitor your daily protein intake with ease and e
 ## Features
 
 **Add:** Enter new food items along with their protein content to keep track of your intake.
+
 **Remove:** Delete entries that were previously added.
+
 **View:** See today's food entries at a glance. A pie chart visually shows how close you are to reaching your daily protein goals.
 
 ## Technical Stack
