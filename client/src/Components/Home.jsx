@@ -213,9 +213,11 @@ const Home = () => {
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("darkBody");
+      document.documentElement.classList.add("dark-mode")
     } else {
       document.body.classList.remove("darkBody");
       document.body.classList.remove("dark-mode");
+      document.documentElement.classList.remove("dark-mode")
     }
   }, [isDarkMode]);
 

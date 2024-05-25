@@ -10,10 +10,12 @@ function App() {
   useEffect(() => {
     const className = isDarkMode ? "dark-mode" : "light-mode";
     document.body.className = className;
+    document.documentElement.className = className;
     localStorage.setItem("darkMode", isDarkMode);
 
     return () => {
       document.body.classList.remove("dark-mode", "light-mode");
+      document.documentElement.classList.remove("dark-mode", "light-mode")
     };
   }, [isDarkMode]);
 
