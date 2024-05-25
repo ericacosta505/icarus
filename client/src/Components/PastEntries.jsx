@@ -43,7 +43,7 @@ const PastEntries = ({ isDarkMode, pastEntries }) => {
           {filteredEntries.length > 0 ? (
             filteredEntries.map((entry, index) => (
               <div key={index} className="entryItem">
-                {formatDate(entry.createdAt)} - {entry.mealName} -
+                 - {entry.mealName}: 
                 {entry.proteinAmount}g
               </div>
             ))
