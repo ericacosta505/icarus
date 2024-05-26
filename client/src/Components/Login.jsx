@@ -46,12 +46,12 @@ const Login = () => {
   }, []);
 
   return (
-    <>
+    <div className="loginWrapper">
       <h1 className="icarusTitleLogin">My Protein Tracker</h1>
       <div className={isDarkMode ? "darkModeFormContainer" : "form_container"}>
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="emailBlock">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -61,7 +61,7 @@ const Login = () => {
               onChange={handleOnChange}
             />
           </div>
-          <div>
+          <div className="passwordBlock">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -71,13 +71,13 @@ const Login = () => {
               onChange={handleOnChange}
             />
           </div>
-          <button type="submit">Submit</button>
+          <button className="formSubmit" type="submit">Submit</button>
           <span>
             Don't have an account? <Link to="/signup">Signup</Link>
           </span>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

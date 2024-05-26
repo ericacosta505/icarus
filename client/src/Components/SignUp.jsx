@@ -47,7 +47,7 @@ const Signup = () => {
   }, []);
 
   return (
-    <>
+    <div className="signupWrapper">
       <h1 className="icarusTitleSignup">My Protein Tracker</h1>
       <div className={isDarkMode ? "darkModeFormContainer" : "form_container"}>
         <h2>Signup Account</h2>
@@ -88,7 +88,7 @@ const Signup = () => {
           </span>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

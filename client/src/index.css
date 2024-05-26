@@ -19,22 +19,23 @@ html {
   border-radius: 1rem;
 }
 
-.form_container {
-  backdrop-filter: blur(0.5rem);
-  padding: 4rem;
-  width: 20rem;
+.loginWrapper, .signupWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  justify-content: center;
+  min-height: 100vh; 
+  padding: 20px;
 }
 
-.form_container button {
-  margin-bottom: 1rem;
-  width: 22.25rem;
+.form_container {
+  width: 20rem;
+  padding: 4rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 form {
@@ -54,12 +55,20 @@ label {
 
 input[type="email"],
 input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 1rem;
-  border: 0.1rem solid rgb(94, 94, 94);
-  border-radius: 0.5rem;
-  margin-top: 0.5rem;
+input[type="password"], 
+.form_container button,
+.darkModeFormContainer button {
+    width: 100%;
+    padding: 1rem;
+    border: 0.1rem solid rgb(94, 94, 94);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+}
+
+
+
+.form_container button, .darkModeFormContaier button{
+  border: none;
 }
 
 input[type="email"]:focus,
@@ -82,25 +91,16 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* .pencilButton {
-  background-color: #ffffff;
-} */
-
 .darkModeFormContainer {
   background: #454545;
   color: #ffffff;
+  width: 20rem;
+  padding: 4rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
-  backdrop-filter: blur(0.5rem);
-  padding: 4rem;
-  width: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 a {
@@ -537,18 +537,19 @@ body.darkBody .react-calendar {
 }
 
 .icarusTitleLogin {
-  position: absolute;
-  top: 23rem;
-  left: 71.5rem;
+  margin-bottom: 2rem;
 }
 
 .icarusTitleSignup {
-  position: absolute;
-  top: 20rem;
-  left: 71.5rem;
+  margin-bottom: 2rem;
 }
 
 .pastEntrySum {
   font-weight: bold;
   font-size: 5rem;
+}
+
+.emailBlock, .passwordBlock {
+  display: flex;
+  flex-direction: column;
 }
